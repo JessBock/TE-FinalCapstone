@@ -1,12 +1,6 @@
 START TRANSACTION;
 
-DROP TABLE IF EXISTS collections;
-DROP TABLE IF EXISTS collections_records;
-DROP TABLE IF EXISTS records;
-DROP TABLE IF EXISTS users_records;
-DROP TABLE IF EXISTS artists;
-DROP TABLE IF EXISTS members_artists;
-DROP TABLE IF EXISTS members; 	
+DROP TABLE IF EXISTS collections, collections_records, records, users_records, artists, members_artists, members, tracks CASCADE;
 
 CREATE TABLE collections(
 	collections_id serial,
@@ -24,10 +18,10 @@ CREATE TABLE records(
 	year INT,
 	genre varchar (25),
 	condition varchar (25),
-	disc_size INT,						-- 12 or 7 inch
-	speed INT,							-- 33.5 45
 	records_comments varchar (500),
-	artists_id INT,
+	image varchar (250),							-- url link to image
+	artists_id INT,									-- FK to artists
+	tracks_id INT,									-- FK to song tracks
 	CONSTRAINT PK_records PRIMARY KEY (records_id)
 );
 
@@ -39,7 +33,7 @@ CREATE TABLE collections_records(
 	CONSTRAINT PK_collections_records PRIMARY KEY (collections_id, records_id)
 );
 
-CREATE TABLE users_records(				-- library
+CREATE TABLE users_records(							-- library
 	user_id INT,
 	records_id INT,
 	CONSTRAINT FK_users_records_users FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -52,6 +46,7 @@ CREATE TABLE artists (
 	name varchar (50),
 	--artists_members varchar
 	records_id INT,
+	image varchar (250),							-- url link to image
 	CONSTRAINT PK_artists PRIMARY KEY (artists_id),
 	CONSTRAINT FK_artists_records FOREIGN KEY (records_id) REFERENCES records(records_id)
 );
@@ -70,9 +65,19 @@ CREATE TABLE members_artists(
 	CONSTRAINT PK_members_artists PRIMARY KEY (artists_id, members_id)
 );
 
+CREATE TABLE tracks (
+	tracks_id serial,
+	name varchar (50),
+	--artists_members varchar
+	records_id INT,
+	CONSTRAINT PK_tracks PRIMARY KEY (tracks_id),
+	CONSTRAINT FK_tracks_records FOREIGN KEY (records_id) REFERENCES records(records_id)
+);
+
 -- modify tables once all tables are created as necessary
 ALTER TABLE users ADD CONSTRAINT FK_users_collections FOREIGN KEY (collections_id) REFERENCES collections(collections_id);
 ALTER TABLE collections ADD CONSTRAINT FK_collections_users FOREIGN KEY (user_id) REFERENCES users(user_id);
 ALTER TABLE records ADD CONSTRAINT FK_records_artists FOREIGN KEY (artists_id) REFERENCES artists(artists_id);
+ALTER TABLE records ADD CONSTRAINT FK_records_tracks FOREIGN KEY (tracks_id) REFERENCES tracks(tracks_id);
 
 COMMIT;
