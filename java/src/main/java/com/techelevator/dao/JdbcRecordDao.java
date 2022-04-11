@@ -22,11 +22,11 @@ public class JdbcRecordDao implements RecordDao {
 
         /*
         May need to update Table Names!!!
-         */
+
         String addRecord = "INSERT INTO records(title, year, genre, image) VALUES(?, ?, ?, ?)"
 
 
         String addToLibrary = "INSERT INTO users_records"
-
+                */
     }
 }

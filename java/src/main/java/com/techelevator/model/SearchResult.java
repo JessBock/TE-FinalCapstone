@@ -7,8 +7,6 @@ import java.util.List;
 public class SearchResult {
     private List<String> genre;
     private String title;
-    private String artist;
-    private List<String> tracklist;
     private String year;
     @JsonProperty("resource_url")
     private String resourceURL;
