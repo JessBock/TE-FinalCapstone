@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -15,7 +15,7 @@ CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
 	username varchar(50) UNIQUE NOT NULL,
 	password_hash varchar(200) NOT NULL,
-	user_premium boolean DEFAULT false,			-- preium or standard user
+	user_premium boolean DEFAULT false,			-- premium or standard user
 	user_description varchar(500),
 	collections_id INT,
 	role varchar(50) NOT NULL, 					-- Role: regular or adminstrative user
