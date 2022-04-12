@@ -21,7 +21,7 @@ public class DiscogsService {
     }
 
     public RecordDTO getRecords(String id) {
-        String url = BASE_URL + "releases/" + id;
+        String url = BASE_URL + "masters/" + id;
         return restTemplate.getForObject(url, RecordDTO.class);
     }
     /*

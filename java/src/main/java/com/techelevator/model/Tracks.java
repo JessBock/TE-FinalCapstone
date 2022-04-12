@@ -3,7 +3,7 @@ package com.techelevator.model;
 import java.time.Duration;
 
 public class Tracks {
-    private Duration duration;
+    private String duration;
     private String position;
     private String title;
 
@@ -11,17 +11,17 @@ public class Tracks {
         super();
     }
 
-    public Tracks(Duration duration, String position, String title) {
+    public Tracks(String duration, String position, String title) {
         this.duration = duration;
         this.position = position;
         this.title = title;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
