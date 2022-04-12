@@ -1,7 +1,8 @@
 <template>
+
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+   
       <div
         class="alert alert-danger"
         role="alert"
@@ -31,10 +32,10 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link class="routerlink" :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
-	<record-album></record-album>
+    <record-album></record-album>
   </div>
 </template>
 
@@ -77,10 +78,36 @@ export default {
 };
 </script>
 <style scoped>
+
+body {
+
+}
+
+#login {
+  display: grid;
+  margin-top: 200px;
+  justify-items: end;
+  text-decoration-color: honeydew;
+
+  
+}
+
+label, .routerlink, button {
+  padding: 10px;
+}
+
+
 form {
+  display:flex;
+    flex-direction: column;
+    width:10vw;
+    justify-content: right;
+    align-content: center;
+    flex-basis: 45%; 
     animation: fadeInAnimation ease 15s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    
 }
  
 @keyframes fadeInAnimation {
@@ -91,4 +118,6 @@ form {
         opacity: 1;
      }
 }
+
+
 </style>

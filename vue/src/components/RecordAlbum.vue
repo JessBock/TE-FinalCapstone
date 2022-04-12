@@ -26,12 +26,14 @@ export default {
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body {
 	height: 100%;
-  /*broken link to address 
-  */
-	background-image: url('https://onmilwaukee.com/articles/milwaukee-record-stores-guide#?');
-  
+
+ 
+	background-image: url('../assets/2manydjsrecord.jpg'); 
+ 
 	background-size: cover;
-	overflow: hidden;
+	overflow: hidden; 
+
+  
 }
 #wrap {
 	background-color: rgba(0,0,0,0.8);	
@@ -153,5 +155,16 @@ background-size: cover;
 }
 #login {
   transition-delay: 7s;
+  color: honeydew;
 }
+
+.routerlink {
+  color: honeydew;
+
+}
+
+.home {
+  color: honeydew;
+}
+
 </style>
