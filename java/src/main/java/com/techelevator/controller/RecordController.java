@@ -1,11 +1,14 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.RecordDao;
 import com.techelevator.model.RecordDTO;
 import com.techelevator.model.SearchResponse;
 import com.techelevator.model.SearchResult;
 import com.techelevator.services.DiscogsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +16,11 @@ import java.util.List;
 @CrossOrigin
 public class RecordController {
     private DiscogsService discogs;
+    private RecordDao recordDao;
 
-    public RecordController(DiscogsService discogs) {
+    public RecordController(DiscogsService discogs, RecordDao recordDao) {
         this.discogs = discogs;
+        this.recordDao = recordDao;
     }
 
 
@@ -33,6 +38,12 @@ public class RecordController {
 
         RecordDTO record = discogs.getRecords(id);
         return record;
+    }
+
+    @PreAuthorize("permitAll")
+    @RequestMapping(path= "/library", method= RequestMethod.POST)
+    public void saveRecord(@RequestBody RecordDTO record, Principal principal) {
+        recordDao.saveToLibrary(record, principal);
     }
 
 }

@@ -6,6 +6,10 @@ export default {
     },
 
     getRecordById(id) {
-        return axios.get('/releases/' + id)
+        return axios.get('/releases/' + id);
+    },
+
+    saveToDB(payload) {
+        return axios.post('/library', payload);
     }
 }

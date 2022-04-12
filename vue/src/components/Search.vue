@@ -50,14 +50,15 @@ export default {
       })
      },
         goToDetails(id) {
+          const self = this;
             recordService.getRecordById(id)
             .then( response => {
-                this.recordDetails = response.data;
-                this.record = this.results.find( element => {
-                    element.id === id;
+                self.recordDetails = response.data;
+                self.record = self.results.find( element => {
+                    return element.id === id;
                 });
                 //this.coverImg = record.cover_image;
-                this.results = [];
+                self.results = [];
             })
             .catch( error => {
             if (error.response) {
@@ -69,6 +70,9 @@ export default {
         }
       });
     }
+    },
+    created() {
+      
     }
 
 }

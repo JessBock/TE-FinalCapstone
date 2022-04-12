@@ -1,8 +1,8 @@
 package com.techelevator.model;
 
 public class Artists {
-    private long id;
-    private String name;
+    private long id = 0;
+    private String name = "";
 
     public Artists() {
         super();

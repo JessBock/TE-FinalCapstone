@@ -2,17 +2,18 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecordDTO {
-    private List<String> genre;
-    private String title;
+    private List<String> genre = new ArrayList<>();
+    private String title = "";
     @JsonProperty("artists")
     private List<Artists> artists;
     @JsonProperty("tracklist")
-    private List<Tracks> tracklist;
-    private String year;
-    private String thumb;
+    private List<Tracks> tracklist = new ArrayList<>();
+    private long year = 0;
+    private String coverImg = "";
 
     public List<String> getGenre() {
         return genre;
@@ -38,23 +39,14 @@ public class RecordDTO {
         this.tracklist = tracklist;
     }
 
-    public String getYear() {
+    public long getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(long year) {
         this.year = year;
     }
 
-    public String getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
-
-    /*
     public String getCoverImg() {
         return coverImg;
     }
@@ -62,8 +54,6 @@ public class RecordDTO {
     public void setCoverImg(String coverImg) {
         this.coverImg = coverImg;
     }
-
-     */
 
     public List<Artists> getArtists() {
         return artists;
