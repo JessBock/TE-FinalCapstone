@@ -1,0 +1,79 @@
+<template>
+  <div v-on:submit.prevent="searchWebsite()">
+      <input type="text" v-model="searchTerm"/>
+      <button type="submit" v-on:click.prevent="searchWebsite()">Search</button>
+      <div v-for="result in results" v-bind:key="result.id" v-bind:result="result">
+        <img v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
+        <h2> {{result.title}} </h2>
+        <h4> {{result.year}} : {{result.genre}}</h4>
+      </div>
+      <div>
+          <record-details v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
+      </div>
+  </div>
+</template>
+
+<script>
+import recordService from '@/services/RecordService.js';
+import RecordDetails from './RecordDetails.vue';
+
+
+export default {
+  components: { RecordDetails },
+    name: "search",
+    
+    data() {
+        return {
+            searchTerm: '',
+            results: [],
+            recordDetails: [],
+            errorMsg: '',
+            coverImg: '',
+            record: {}
+        }
+    },
+
+    methods: {
+        searchWebsite() {
+            recordService.search(this.searchTerm)
+            .then( response => {
+                this.results = response.data.results;
+            })
+            .catch( error => {
+            if (error.response) {
+            this.errorMsg = "Received an error from the server: " + error.response.statusText;
+            } else if (error.request) {
+             this.errorMsg = "Error submitting request, could not reach server";
+            } else {
+              this.errorMsg = "I'm sorry, there was an error. Please try again later.";
+        }
+      })
+     },
+        goToDetails(id) {
+            recordService.getRecordById(id)
+            .then( response => {
+                this.recordDetails = response.data;
+                this.record = this.results.find( element => {
+                    element.id === id;
+                });
+                //this.coverImg = record.cover_image;
+                this.results = [];
+            })
+            .catch( error => {
+            if (error.response) {
+            this.errorMsg = "Received an error from the server: " + error.response.statusText;
+            } else if (error.request) {
+             this.errorMsg = "Error submitting request, could not reach server";
+            } else {
+              this.errorMsg = "I'm sorry, there was an error. Please try again later.";
+        }
+      });
+    }
+    }
+
+}
+</script>
+
+<style>
+
+</style>
