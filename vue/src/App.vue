@@ -11,14 +11,12 @@
   </div>
 </template>
 
-<<<<<<< HEAD
 <style>
 .home {
   color: honeydew;
 }
 
 </style>
-=======
 <script>
 import Search from '@/components/Search.vue';
 
@@ -37,4 +35,3 @@ export default {
 
 </style>
 
->>>>>>> f5200e0211901e28011d8906acc453bc517623dc

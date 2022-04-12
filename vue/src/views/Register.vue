@@ -90,4 +90,40 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+h1 {
+  color: black;
+}
+
+body {
+color: honeydew;
+}
+
+#register {
+  display: grid;
+  margin-top: 200px;
+  justify-items: center;
+}
+
+label, .routerlink, button {
+  padding: 10px;
+  color: black;
+}
+
+
+form {
+  display:flex;
+    flex-direction: column;
+    width:40vw;
+    justify-content: right;
+    align-content: center;
+    flex-basis: 45%; 
+    background: url('../assets/Led-Zeppelin-Clip.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 50vh;
+  
+    
+}
+</style>
