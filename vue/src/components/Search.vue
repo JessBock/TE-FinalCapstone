@@ -16,7 +16,7 @@
 <script>
 import recordService from '@/services/RecordService.js';
 import RecordDetails from './RecordDetails.vue';
-
+//import moment from 'moment';
 
 export default {
   components: { RecordDetails },
@@ -57,11 +57,13 @@ export default {
                 self.record = self.results.find( element => {
                     return element.id === id;
                 });
-                //this.coverImg = record.cover_image;
+                
                 self.results = [];
             })
             .catch( error => {
-            if (error.response) {
+              if (!this.recordDetails) {
+                alert("This selection does not have any additional details. Please make another choice.")
+            } else if (error.response) {
             this.errorMsg = "Received an error from the server: " + error.response.statusText;
             } else if (error.request) {
              this.errorMsg = "Error submitting request, could not reach server";
@@ -73,8 +75,13 @@ export default {
     },
     created() {
       
+    },
+  /*  filters: {
+      moment: function(year) {
+        return moment(year).format('YYYY');
+      }
     }
-
+*/
 }
 </script>
 
