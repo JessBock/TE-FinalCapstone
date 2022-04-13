@@ -3,10 +3,9 @@
       <div>
        <h1>{{recordDetails.artists[0].name}} </h1>
        <img v-bind:src="record.cover_image"/> 
-       <button type="submit" v-on:click.prevent="saveToLibrary(recordDetails, record)">Add To Library</button>
        <h5 v-for="track in recordDetails.tracklist" v-bind:key="track.position"> {{track.title}} : {{track.duration}} - {{track.position}}</h5>
        
-       <button type="submit" v-on:click.prevent="saveToLibrary(recordDetails, record)">Add To Library</button>
+       <button v-show="record.type == 'master'" type="submit" v-on:click.prevent="saveToLibrary(recordDetails, record)">Add To Library</button>
        
       </div>
   </div>
