@@ -2,10 +2,12 @@
   <div v-on:submit.prevent="searchWebsite()">
       <input type="text" v-model="searchTerm"/>
       <button type="submit" v-on:click.prevent="searchWebsite()">Search</button>
-      <div v-for="result in results" v-bind:key="result.id" v-bind:result="result">
-        <img v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
-        <h2> {{result.title}} </h2>
-        <h4> {{result.year}} : {{result.genre}}</h4>
+      <div class="search_result">
+        <div class="single-result" v-for="result in results" v-bind:key="result.id" v-bind:result="result">
+          <img v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
+          <h2> {{result.title}} </h2>
+          <h4> {{result.year}} : {{result.genre}}</h4>
+        </div>
       </div>
       <div>
           <record-details v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
@@ -78,6 +80,27 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
+
+.single-result{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "img h2 h4";
+}
+
+img {
+  max-width: 300px;
+  height: 300px;
+  grid-area: image;
+}
+
+h2 {
+  grid-area: h2;
+}
+
+h4 {
+  grid-area: h4;
+}
 
 </style>
