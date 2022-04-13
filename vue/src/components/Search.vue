@@ -83,24 +83,15 @@ export default {
 <style scope>
 
 .single-result{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 
-    "img h2 h4";
+  display: flex;
+  background-color: gray;
 }
 
 img {
   max-width: 300px;
   height: 300px;
-  grid-area: image;
 }
 
-h2 {
-  grid-area: h2;
-}
 
-h4 {
-  grid-area: h4;
-}
 
 </style>
