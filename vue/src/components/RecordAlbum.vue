@@ -28,7 +28,7 @@ html,body {
 	height: 100%;
 	background-image: url('../assets/2manydjsrecord.jpg'); 
 	background-size: cover;
-	/*overflow: hidden; */
+
   
 }
 #wrap {
