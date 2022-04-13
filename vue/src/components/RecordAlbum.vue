@@ -22,13 +22,12 @@ export default {
 }
 </script>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
+<style scope>
+*{margin:0;padding:5;box-sizing:border-box;}
 html,body {
 	height: 100%;
 	background-image: url('../assets/2manydjsrecord.jpg'); 
 	background-size: cover;
-	/*overflow: hidden; */
   
 }
 #wrap {
@@ -94,8 +93,8 @@ html,body {
 		top: 2.5%;
 		left: 2.5%;
 		z-index: 0;
-		width: 95%;
-		height: 95%;
+		width: 94%;
+		height: 94%;
 		display: block;
     /* image of vinyl disc */
 		background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
