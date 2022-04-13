@@ -147,13 +147,7 @@ form {
     width:30vw;
     flex-basis: 45%;
     border-style: double;
-    border-radius: 100px;
-    /* 
-    background: url('../assets/Led-Zeppelin-Clip2.jpg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 50vh;*/
-  
+    border-radius: 100px; 
     
 }
 </style>
