@@ -1,10 +1,15 @@
 <template>
   <div class="home">
-    <h1>User logged in page</h1>
-    <div v-for="record in library" v-bind:key="record.id">
+    <h1>My Library</h1>
+    <div class="library">
+    <div class="record" v-for="record in library" v-bind:key="record.id">
       <img v-bind:src="record.coverImg" />
-      <h1>{{record.title}}</h1>
-      <h2 v-for="artist in artists" v-bind:key ="artist.name">{{artist}}</h2>
+      <h2>{{record.title}}</h2>
+      <h2 v-for="artist in record.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
+      <h3>{{record.year}}</h3>
+      <h3>{{record.genre}}</h3>
+
+    </div>
     </div>
   </div>
 </template>
@@ -32,8 +37,30 @@ export default {
 };
 </script>
 <style scoped>
-
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.library {
+  display: flex;
+  flex-wrap: wrap;
+}
 h1 {
-  color: red;
+  color: black;
+}
+
+.record{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  margin: 1vw;
+  padding: 20px;
+  width: 30vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 </style>

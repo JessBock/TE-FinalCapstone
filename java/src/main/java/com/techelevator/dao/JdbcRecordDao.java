@@ -1,8 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.RecordDTO;
-import com.techelevator.model.SearchResult;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -59,23 +57,67 @@ public class JdbcRecordDao implements RecordDao {
 
     @Override
     public List<RecordDTO> getLibrary(User user) {
+        RecordDTO record = new RecordDTO();
         List<RecordDTO> records = new ArrayList<>();
-        String sql = "SELECT * FROM records " +
+        String sql = "SELECT DISTINCT records.title, records.year, records.image " +
+                "FROM records " +
                 "JOIN users_records ON users_records.records_id = records.records_id " +
+                "JOIN artists ON records.records_id = artists.records_id " +
                 "WHERE user_id = ?;";
 
-       SqlRowSet results = jdbcTemplate.queryForRowSet(sql, RecordDTO.class);
+       SqlRowSet results = jdbcTemplate.queryForRowSet(sql, user.getId());
        while(results.next()) {
-           return records;
+            record = mapRowToGetLibrary(results);
+            String getGenres = "SELECT DISTINCT genres.name FROM genres " +
+                    "JOIN records_genres ON genres.genres_id = records_genres.genres_id " +
+                    "JOIN records ON records_genres.records_id = records.records_id " +
+                    "JOIN artists ON records.records_id = artists.records_id " +
+                    "WHERE records.title = ?;";
+            SqlRowSet genres = jdbcTemplate.queryForRowSet(getGenres, record.getTitle());
+            while(genres.next()) {
+                record.getGenre().add(genres.getString("name"));
+            }
+
+            String getArtists = "SELECT artists.name " +
+                    "FROM artists " +
+                    "JOIN records ON artists.records_id = records.records_id " +
+                    "WHERE records.title = ?;";
+            SqlRowSet artists = jdbcTemplate.queryForRowSet(getArtists, record.getTitle());
+            while (artists.next()) {
+                    Artists newArtist = new Artists();
+                    newArtist.setName(artists.getString("name"));
+                    record.getArtists().add(newArtist);
+            }
+
+            String getTracks = "SELECT * FROM tracks " +
+                    "JOIN records ON tracks.records_id = records.records_id " +
+                    "WHERE records.title = ?;";
+            SqlRowSet tracks = jdbcTemplate.queryForRowSet(getTracks, record.getTitle());
+            while (tracks.next()) {
+                Tracks newTrack = new Tracks();
+                newTrack = mapRowToTrack(tracks);
+                record.getTracklist().add(newTrack);
+            }
+            records.add(record);
        }
        return records;
     }
 
 
-    private void mapRowToRecordDTO(SqlRowSet rowSet) {
+    private RecordDTO mapRowToGetLibrary(SqlRowSet rowSet) {
         RecordDTO record = new RecordDTO();
-        record.getArtists().get(0).setName("name");
+        record.setTitle(rowSet.getString("title"));
+        record.setYear(rowSet.getString("year"));
+        record.setCoverImg(rowSet.getString("image"));
+        return record;
     }
 
+    private Tracks mapRowToTrack(SqlRowSet rowSet) {
+        Tracks newTrack = new Tracks();
+        newTrack.setTitle(rowSet.getString("name"));
+        newTrack.setDuration(rowSet.getString("duration"));
+        newTrack.setPosition(rowSet.getString("position"));
+        return newTrack;
+    }
 
 }

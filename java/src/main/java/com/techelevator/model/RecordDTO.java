@@ -2,23 +2,26 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecordDTO {
     private List<String> genre = new ArrayList<>();
     private String title = "";
+    private String year;
+    private String coverImg = "";
     @JsonProperty("artists")
-    private List<Artists> artists;
+    private List<Artists> artists = new ArrayList<>();
     @JsonProperty("tracklist")
     private List<Tracks> tracklist = new ArrayList<>();
-    private Date year;
-    private String coverImg = "";
 
-    public Date getYear(){ return year = Date.valueOf(String.valueOf(year.toLocalDate()));}
+    public String getYear(){
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
 
     public List<String> getGenre() {
         return genre;
