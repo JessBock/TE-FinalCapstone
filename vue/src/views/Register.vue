@@ -32,11 +32,20 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link class="login-query" :to="{ name: 'login' }">Have an account?</router-link>
+      <label for="premium_user" class="premium_selector"> Premium user </label>
+      <input 
+        type="checkbox" 
+        id="premium_user" 
+        class="form-control"
+        name="premium_user"
+        v-model="user.user_premium" 
+        />
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
     </form>
+    <router-link class="login-query" :to="{ name: 'login' }">Have an account?</router-link>
   </div>
 </template>
 
@@ -52,6 +61,8 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        user_premium: false,
+        user_description: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -82,6 +93,9 @@ export default {
           });
       }
     },
+    premium() {
+      this.user.user_premium = !this.user.user_premium;
+    },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
@@ -102,7 +116,7 @@ export default {
 }
 
 .login-query {
-  color: blue;
+  color: whitesmoke;
   text-align: center;
   padding: 10px;
 }
@@ -123,6 +137,9 @@ label, .routerlink {
   color: honeydew;
 }
 
+button {
+  margin-top: 5px;
+}
 
 form {
   display:flex;

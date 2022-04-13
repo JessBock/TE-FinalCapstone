@@ -28,7 +28,7 @@ html,body {
 	height: 100%;
 	background-image: url('../assets/2manydjsrecord.jpg'); 
 	background-size: cover;
-	overflow: hidden; 
+	/*overflow: hidden; */
   
 }
 #wrap {
@@ -52,7 +52,7 @@ html,body {
 	height: 100%;
   /*album cover, make random if possible
   */
-	background-image: url('https://resources.wimpmusic.com/images/e4b27d83/6d03/4d1d/bd1a/82abf8920455/1280x1280.jpg'); 
+	background-image: url('../assets/bg_image1.jpg'); 
 	background-size: 100% 100%;
 	box-shadow: 5px 0 20px 0 rgba(0,0,0,0.6),
               inset 0 0 10px 5px rgba(255, 255, 255, 0.2),
