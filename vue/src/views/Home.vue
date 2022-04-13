@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>User logged in page</h1>
+    
  
   </div>
 </template>
