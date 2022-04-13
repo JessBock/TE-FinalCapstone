@@ -91,7 +91,14 @@ export default {
 
 .single-result{
   display: flex;
-  background-color: gray;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  margin: 50px;
+  padding: 20px;
+  width: 30vw;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
