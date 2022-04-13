@@ -12,6 +12,15 @@ public class RegisterUserDTO {
     private String confirmPassword;
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
+    private boolean userPremium;
+
+    public boolean isUserPremium() {
+        return userPremium;
+    }
+
+    public void setUserPremium(boolean userPremium) {
+        this.userPremium = userPremium;
+    }
 
     public String getUsername() {
         return username;
