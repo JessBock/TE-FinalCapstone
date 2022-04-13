@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ public class RecordDTO {
     private List<Artists> artists;
     @JsonProperty("tracklist")
     private List<Tracks> tracklist = new ArrayList<>();
-    private Year year;
+    private Date year;
     private String coverImg = "";
+
+    public Date getYear(){ return year = Date.valueOf(String.valueOf(year.toLocalDate()));}
 
     public List<String> getGenre() {
         return genre;
@@ -39,14 +42,6 @@ public class RecordDTO {
 
     public void setTracklist(List<Tracks> tracklist) {
         this.tracklist = tracklist;
-    }
-
-    public Year getYear() {
-        return year;
-    }
-
-    public void setYear(Year year) {
-        this.year = year;
     }
 
     public String getCoverImg() {

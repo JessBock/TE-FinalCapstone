@@ -1,6 +1,6 @@
 START TRANSACTION;
 
-DROP TABLE IF EXISTS collections, collections_records, records, users_records, artists, members_artists, members, tracks CASCADE;
+DROP TABLE IF EXISTS collections, collections_records, records, users_records, artists, members_artists, members, tracks, genres, records_genres CASCADE;
 
 CREATE TABLE collections(
 	collections_id serial,
