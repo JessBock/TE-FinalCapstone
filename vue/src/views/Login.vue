@@ -79,15 +79,12 @@ export default {
 </script>
 <style scoped>
 
-body {
-
-}
-
 #login {
   display: grid;
   margin-top: 200px;
   justify-items: end;
   text-decoration-color: honeydew;
+  font-family: vinyl-regular;
 
   
 }

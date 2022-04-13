@@ -32,7 +32,7 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link class="login-query" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -90,39 +90,52 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
-h1 {
-  color: black;
+.form-register {
+    width: 20vw;
+    background-image: url('../assets/Led-Zeppelin-Clip.jpg'); 
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
 
-body {
+.login-query {
+  color: blue;
+  text-align: center;
+  padding: 10px;
+}
+body, h1 {
 color: honeydew;
+text-align: center;
 }
 
 #register {
   display: grid;
   margin-top: 200px;
   justify-items: center;
+
 }
 
-label, .routerlink, button {
+label, .routerlink {
   padding: 10px;
-  color: black;
+  color: honeydew;
 }
 
 
 form {
   display:flex;
     flex-direction: column;
-    width:40vw;
-    justify-content: right;
-    align-content: center;
-    flex-basis: 45%; 
-    background: url('../assets/Led-Zeppelin-Clip.jpg');
+    width:30vw;
+    flex-basis: 45%;
+    border-style: double;
+    border-radius: 100px;
+    /* 
+    background: url('../assets/Led-Zeppelin-Clip2.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 50vh;
+    height: 50vh;*/
   
     
 }

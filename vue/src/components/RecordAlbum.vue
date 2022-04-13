@@ -26,13 +26,9 @@ export default {
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body {
 	height: 100%;
-
- 
 	background-image: url('../assets/2manydjsrecord.jpg'); 
- 
 	background-size: cover;
 	overflow: hidden; 
-
   
 }
 #wrap {

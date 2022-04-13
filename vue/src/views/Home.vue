@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>User logged in page</h1>
  
   </div>
 </template>
@@ -14,4 +14,7 @@ export default {
 </script>
 <style scoped>
 
+h1 {
+  color: red;
+}
 </style>
