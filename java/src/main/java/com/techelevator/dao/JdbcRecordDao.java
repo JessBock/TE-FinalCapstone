@@ -40,10 +40,20 @@ public class JdbcRecordDao implements RecordDao {
             String updateRecordTable = "UPDATE records SET artists_id = ? WHERE records_id = ?";
             jdbcTemplate.update(updateRecordTable, artistId, recordId);
         }
+        String addToGenre = "INSERT INTO genres(name) VALUES (?) RETURNING genres_id";
+        for(int i = 0; i < record.getGenre().size(); i ++) {
+            Long genreId = jdbcTemplate.queryForObject(addToGenre, Long.class, record.getGenre().get(i));
 
-        String addToTracks = "INSERT INTO tracks(name, records_id) VALUES (?, ?)";
+            String updateRecordTable = "UPDATE records SET genres_id = ? WHERE records_id = ?";
+            jdbcTemplate.update(updateRecordTable, genreId, recordId);
+
+            String updateRecordsGenres = "INSERT INTO records_genres(genres_id, records_id) VALUES(?,?)";
+            jdbcTemplate.update(updateRecordsGenres, genreId, recordId);
+        }
+        String addToTracks = "INSERT INTO tracks(name, records_id, duration, position) VALUES (?, ?, ?, ?)";
         for(int i = 0; i < record.getTracklist().size(); i ++) {
-            jdbcTemplate.update(addToTracks, record.getTracklist().get(i).getTitle(), recordId);
+            jdbcTemplate.update(addToTracks, record.getTracklist().get(i).getTitle(), recordId,
+                    record.getTracklist().get(i).getDuration(), record.getTracklist().get(i).getPosition());
         }
     }
 

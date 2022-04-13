@@ -11,5 +11,9 @@ export default {
 
     saveToDB(payload) {
         return axios.post('/library', payload);
+    },
+
+    getLibrary() {
+        return axios.get('/library')
     }
 }
