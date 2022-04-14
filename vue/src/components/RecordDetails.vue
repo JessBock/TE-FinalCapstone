@@ -47,6 +47,7 @@ export default {
         recordService.saveToDB(newRecord)
         .then(
           this.newRecord = {},
+          alert("Record Added To Library"),
           this.$router.push({name: 'home'}),
           location.reload()
         );
