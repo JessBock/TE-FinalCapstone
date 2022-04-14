@@ -10,6 +10,8 @@ import java.util.List;
 public interface RecordDao {
     public void saveToLibrary(RecordDTO record, Principal principal);
 
+    public void deleteFromLibrary(Long recordId);
+
     public List<RecordDTO> getLibrary(User user);
 
 }

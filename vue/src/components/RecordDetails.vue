@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div>
+      <div class="recordDetails">
        <h1>{{newRecord.artists[0].name}} </h1>
        <img v-bind:src="record.cover_image"/> 
        <h5 v-for="track in newRecord.tracklist" v-bind:key="track.position"> {{track.title}} : {{track.duration}} - {{track.position}}</h5>
@@ -44,14 +44,12 @@ export default {
         
         this.$store.commit('SAVE_TO_LIBRARY', newRecord);
 
-        recordService.saveToDB(newRecord);
-        
-        this.newRecord = {};
-        
-        this.$router.push({name: 'home'});
-        location.reload();
-
-        
+        recordService.saveToDB(newRecord)
+        .then(
+          this.newRecord = {},
+          this.$router.push({name: 'home'}),
+          location.reload()
+        );
       }
     }
 
@@ -61,7 +59,21 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.recordDetails{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  margin: 1vw;
+  padding: 20px;
+  width: 30vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+   margin: 5px;
+}
 
 </style>
 

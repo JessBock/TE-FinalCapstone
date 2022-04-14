@@ -54,12 +54,35 @@ public class JdbcRecordDao implements RecordDao {
                     record.getTracklist().get(i).getDuration(), record.getTracklist().get(i).getPosition());
         }
     }
+    @Override
+    public void deleteFromLibrary(Long recordId) {
+        String sql = "DELETE FROM users_records " +
+                "WHERE records_id = ?; " +
 
+                "DELETE FROM records_genres " +
+                "WHERE records_id = ?; " +
+
+                "DELETE FROM genres " +
+                "WHERE genres_id = (SELECT records_genres.genres_id " +
+                "FROM records_genres " +
+                "JOIN records ON records_genres.records_id = records.records_id " +
+                "WHERE records.records_id = ?); " +
+
+                "DELETE FROM tracks " +
+                "WHERE records_id = ?; " +
+
+                "DELETE FROM artists " +
+                "WHERE records_id = ?; " +
+
+                "DELETE FROM records " +
+                "WHERE records_id = ?;";
+        jdbcTemplate.update(sql, recordId, recordId, recordId, recordId, recordId, recordId);
+    }
     @Override
     public List<RecordDTO> getLibrary(User user) {
         RecordDTO record = new RecordDTO();
         List<RecordDTO> records = new ArrayList<>();
-        String sql = "SELECT DISTINCT records.title, records.year, records.image " +
+        String sql = "SELECT DISTINCT records.title, records.year, records.image, records.records_id " +
                 "FROM records " +
                 "JOIN users_records ON users_records.records_id = records.records_id " +
                 "JOIN artists ON records.records_id = artists.records_id " +
@@ -109,6 +132,7 @@ public class JdbcRecordDao implements RecordDao {
         record.setTitle(rowSet.getString("title"));
         record.setYear(rowSet.getString("year"));
         record.setCoverImg(rowSet.getString("image"));
+        record.setRecordId(rowSet.getLong("records_id"));
         return record;
     }
 

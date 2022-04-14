@@ -14,6 +14,7 @@ public class RecordDTO {
     private List<Artists> artists = new ArrayList<>();
     @JsonProperty("tracklist")
     private List<Tracks> tracklist = new ArrayList<>();
+    private Long recordId;
 
     public String getYear(){
         return year;
@@ -61,5 +62,13 @@ public class RecordDTO {
 
     public void setArtists(List<Artists> artists) {
         this.artists = artists;
+    }
+
+    public Long getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
     }
 }

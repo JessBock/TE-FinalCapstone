@@ -2,12 +2,13 @@
   <div class="home">
     <h1>My Library</h1>
     <div class="library">
-    <div class="record" v-for="record in library" v-bind:key="record.id">
-      <img v-bind:src="record.coverImg" />
-      <h2>{{record.title}}</h2>
-      <h2 v-for="artist in record.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
-      <h3>{{record.year}}</h3>
-      <h3>{{record.genre}}</h3>
+    <div class="record" v-for="libraryRecord in library" v-bind:key="libraryRecord.id">
+      <img v-bind:src="libraryRecord.coverImg" />
+      <h2>{{libraryRecord.title}}</h2>
+      <h2 v-for="artist in libraryRecord.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
+      <h3>{{libraryRecord.year}}</h3>
+      <h3>{{libraryRecord.genre}}</h3>
+      <button class="deleteBtn" v-on:click="deleteFromLibrary(libraryRecord)">Delete From Library</button>
 
     </div>
     </div>
@@ -32,8 +33,18 @@ export default {
           this.library = response.data;
         }
       )
+  },
+  methods: {
+    deleteFromLibrary(record) {
+      recordService.deleteFromLibrary(record.recordId)
+      .then( response => {
+        if(response.status == 200) {
+          this.$store.commit('DELETE_FROM_STORE', record)
+          recordService.getLibrary();
+        }
+      });
+    }
   }
- 
 };
 </script>
 <style scoped>
@@ -48,7 +59,10 @@ export default {
   flex-wrap: wrap;
 }
 h1 {
-  color: black;
+  color: white;
+  background: black;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .record{
@@ -58,9 +72,18 @@ h1 {
   color: white;
   margin: 1vw;
   padding: 20px;
-  width: 30vw;
+  width: 500px;
+  height: 500px;
   justify-content: center;
   align-items: center;
   text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
+  background-position: center;
+}
+
+.deleteBtn {
+  margin: 10px;
 }
 </style>
