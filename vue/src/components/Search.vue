@@ -100,11 +100,18 @@ export default {
   flex-direction: column;
   background-color: black;
   color: white;
-  margin: 50px;
+  margin: 1vw;
   padding: 20px;
-  width: 30vw;
+  width: 500px;
+  height: 500px;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
+  background-position: center;
+  background-size: 525px;
 }
 
 img {

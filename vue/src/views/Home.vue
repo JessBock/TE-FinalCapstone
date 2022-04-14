@@ -99,6 +99,7 @@ h1 {
   margin: 5px;
   background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
   background-position: center;
+  
 }
 
 .deleteBtn {
