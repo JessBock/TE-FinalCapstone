@@ -43,13 +43,19 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SAVE_TO_LIBRARY(state, recordDetails) {
-      state.library.push(recordDetails);
+    SAVE_TO_LIBRARY(state, newRecord) {
+      state.library.push(newRecord);
       
+    },
+    DELETE_FROM_STORE(state, record) {
+      state.library.splice(
+        state.library.findIndex(album => album.id === record.id),
+        1
+      )
     },
     SAVE_TO_COLLECTION(state, collection) {
       state.collection.collectionName = collection.collectionName;
       state.collection.records.push(collection.records);
-    }
+  }
   }
 })

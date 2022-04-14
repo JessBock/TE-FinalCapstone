@@ -48,6 +48,11 @@ public class RecordController {
         recordDao.saveToLibrary(record, principal);
     }
 
+    @RequestMapping(path = "/library/{recordId}", method = RequestMethod.DELETE)
+    public void deleteRecord(@PathVariable Long recordId) {
+        recordDao.deleteFromLibrary(recordId);
+    }
+
     @RequestMapping(path = "/library", method = RequestMethod.GET)
     public List<RecordDTO> getLibrary(Principal principal) {
         User user = userDao.findByUsername(principal.getName());

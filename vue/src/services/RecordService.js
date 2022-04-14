@@ -13,6 +13,10 @@ export default {
         return axios.post('/library', payload);
     },
 
+    deleteFromLibrary(recordId) {
+        return axios.delete('/library/' + recordId);
+    },
+
     getLibrary() {
         return axios.get('/library');
     }
