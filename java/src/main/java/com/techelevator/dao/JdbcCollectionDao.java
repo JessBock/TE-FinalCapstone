@@ -4,9 +4,11 @@ import com.techelevator.model.Collection;
 import com.techelevator.model.RecordDTO;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -50,6 +52,20 @@ public class JdbcCollectionDao implements CollectionDao{
     @Override
     public List<Collection> getCollections(User user) {
 
-        return null;
+        List<Collection> collections = new ArrayList<>();
+
+        String getCollections = "SELECT collection_name " +
+                "FROM collections " +
+                "WHERE user_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(getCollections, user.getId());
+
+        while(results.next()) {
+            Collection collection = new Collection();
+            collection.setCollectionName(results.getString("collection_name"));
+            collections.add(collection);
+        }
+
+        return collections;
     }
 }

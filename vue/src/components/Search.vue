@@ -18,7 +18,6 @@
 <script>
 import recordService from '@/services/RecordService.js';
 import RecordDetails from './RecordDetails.vue';
-//import moment from 'moment';
 
 export default {
   components: { RecordDetails },

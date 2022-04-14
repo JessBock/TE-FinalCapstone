@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Results from '@/views/Results.vue'
+import Collections from '@/views/Collections.vue'
 
 Vue.use(Router)
 
@@ -61,7 +62,17 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/collections",
+      name: "view-collections",
+      component: Collections,
+      meta: {
+        requiresAuth: false
+      }
+
     }
+
   ]
 })
 
