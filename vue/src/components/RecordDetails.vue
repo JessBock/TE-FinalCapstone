@@ -1,11 +1,11 @@
 <template>
   <div>
       <div>
-       <h1>{{recordDetails.artists[0].name}} </h1>
-       <img v-show="record.type == 'master'"  v-bind:src="record.cover_image"/> 
-       <h5 v-for="track in recordDetails.tracklist" v-bind:key="track.position"> {{track.title}} : {{track.duration}} - {{track.position}}</h5>
+       <h1>{{newRecord.artists[0].name}} </h1>
+       <img v-bind:src="record.cover_image"/> 
+       <h5 v-for="track in newRecord.tracklist" v-bind:key="track.position"> {{track.title}} : {{track.duration}} - {{track.position}}</h5>
        
-       <button v-show="record.type == 'master'" type="submit" v-on:click.prevent="saveToLibrary(recordDetails, record)">Add To Library</button>
+       <button v-show="record.type == 'master'" type="submit" v-on:click="saveToLibrary(newRecord)">Add To Library</button>
        
       </div>
   </div>
@@ -23,30 +23,35 @@ export default {
     data() {
       return {
         newRecord: {
-          genre: '',
-          title: '',
-          artists: [],
-          tracklist: '',
-          year: '',
-          coverImg: '' 
-
+      
         }
       }
     },
+    created() {
+      this.newRecord = {
+            genre: this.record.genre,
+            title: this.recordDetails.title,
+            artists: this.recordDetails.artists,
+            tracklist: this.recordDetails.tracklist,
+            year: this.record.year,
+            coverImg: this.record.cover_image
+      }
+      
+    },
 
     methods: {
-      saveToLibrary(recordDetails, record) {
-        this.newRecord = {
-            genre: record.genre,
-            title: recordDetails.title,
-            artists: recordDetails.artists,
-            tracklist: recordDetails.tracklist,
-            year: record.year,
-            coverImg: record.cover_image
-        }
-        this.$store.commit('SAVE_TO_LIBRARY', this.newRecord);
+      saveToLibrary(newRecord) {
+        
+        this.$store.commit('SAVE_TO_LIBRARY', newRecord);
 
-        recordService.saveToDB(this.newRecord);
+        recordService.saveToDB(newRecord);
+        
+        this.newRecord = {};
+        
+        this.$router.push({name: 'home'});
+        location.reload();
+
+        
       }
     }
 

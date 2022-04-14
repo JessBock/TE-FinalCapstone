@@ -41,6 +41,7 @@ export default new Vuex.Store({
     },
     SAVE_TO_LIBRARY(state, recordDetails) {
       state.library.push(recordDetails);
+      
     }
   }
 })

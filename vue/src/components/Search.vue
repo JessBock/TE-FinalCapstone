@@ -1,7 +1,7 @@
 <template>
-  <div v-on:submit.prevent="searchWebsite()">
+  <form v-on:submit.prevent="searchWebsite()">
       <input type="text" v-model="searchTerm"/>
-      <button type="submit" v-on:click.prevent="searchWebsite()">Search</button>
+      <button >Search</button>
       <div class="search_result">
         <div class="single-result" v-for="result in results" v-bind:key="result.id" v-bind:result="result">
           <img v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
@@ -12,7 +12,7 @@
       <div>
           <record-details v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
       </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -37,9 +37,12 @@ export default {
 
     methods: {
         searchWebsite() {
+            const self = this;
             recordService.search(this.searchTerm)
             .then( response => {
-                this.results = response.data.results;
+                self.results = self.filterResults(response.data.results);
+                this.$router.push({name: 'results'});
+                self.recordDetails = [];
             })
             .catch( error => {
             if (error.response) {
@@ -49,6 +52,7 @@ export default {
             } else {
               this.errorMsg = "I'm sorry, there was an error. Please try again later.";
         }
+           
       })
      },
         goToDetails(id) {
@@ -63,9 +67,7 @@ export default {
                 self.results = [];
             })
             .catch( error => {
-              if (!this.recordDetails) {
-                alert("This selection does not have any additional details. Please make another choice.")
-            } else if (error.response) {
+              if (error.response) {
             this.errorMsg = "Received an error from the server: " + error.response.statusText;
             } else if (error.request) {
              this.errorMsg = "Error submitting request, could not reach server";
@@ -73,17 +75,22 @@ export default {
               this.errorMsg = "I'm sorry, there was an error. Please try again later.";
         }
       });
-    }
+    },
+
+    filterResults(results) {
+        return results.filter( img => {
+          return img.type == 'master';
+        })
+      }
+    },
+    computed: {
+      
+
     },
     created() {
       
     },
-  /*  filters: {
-      moment: function(year) {
-        return moment(year).format('YYYY');
-      }
-    }
-*/
+  
 }
 </script>
 

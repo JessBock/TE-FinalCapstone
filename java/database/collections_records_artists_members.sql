@@ -15,7 +15,7 @@ CREATE TABLE collections(
 CREATE TABLE records(
 	records_id serial,
 	title varchar (50),
-	year DATE,
+	year varchar (4),
 	condition varchar (25),
 	records_comments varchar (500),
 	image varchar (250),							-- url link to image
