@@ -38,9 +38,8 @@
         id="premium_user" 
         class="form-control"
         name="premium_user"
-        v-model="user.user_premium" 
-        vm.user.user_premium = 'true'
-      
+        v-model="user.user_premium"     
+        checked
         />
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -94,9 +93,6 @@ export default {
             }
           });
       }
-    },
-    premium() {
-      this.user.user_premium = !this.user.user_premium;
     },
     clearErrors() {
       this.registrationErrors = false;
