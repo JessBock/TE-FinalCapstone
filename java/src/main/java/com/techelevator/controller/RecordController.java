@@ -42,7 +42,7 @@ public class RecordController {
         return record;
     }
 
-    @PreAuthorize("permitAll")
+
     @RequestMapping(path= "/library", method= RequestMethod.POST)
     public void saveRecord(@RequestBody RecordDTO record, Principal principal) {
         recordDao.saveToLibrary(record, principal);

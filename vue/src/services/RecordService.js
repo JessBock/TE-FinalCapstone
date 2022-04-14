@@ -18,6 +18,6 @@ export default {
     },
 
     getLibrary() {
-        return axios.get('/library')
+        return axios.get('/library');
     }
 }

@@ -20,7 +20,11 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    library: []
+    library: [],
+    collection: {
+      collectionName: '',
+      records: []
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -48,6 +52,10 @@ export default new Vuex.Store({
         state.library.findIndex(album => album.id === record.id),
         1
       )
-    }
+    },
+    SAVE_TO_COLLECTION(state, collection) {
+      state.collection.collectionName = collection.collectionName;
+      state.collection.records.push(collection.records);
+  }
   }
 })
