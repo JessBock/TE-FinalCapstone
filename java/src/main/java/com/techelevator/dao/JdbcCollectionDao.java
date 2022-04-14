@@ -25,27 +25,16 @@ public class JdbcCollectionDao implements CollectionDao{
 
 
     @Override
-    public void saveCollection(RecordDTO record, Collection collection, Principal principal) {
+    public void addCollection(String collectionName, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
+        Collection collection = new Collection();
 
-        String addingCollection = "INSERT INTO collections (collection_name, count, share, collection_comments, user_id) " +
-                "VALUES (?, (SELECT COUNT(collection_name) " +
-                "FROM collections " +
-                "WHERE user_id = ?) , ?, ?, ?); RETURNING collections_id";
+        String addingCollection = "INSERT INTO collections (collection_name, share, collection_comments, user_id) " +
+                "VALUES (?, ?, ?, ?) RETURNING collections_id";
 
-        Long collectionId = jdbcTemplate.queryForObject(addingCollection, Long.class, collection.getCollectionName(), userId,
+        Long collectionId = jdbcTemplate.queryForObject(addingCollection, Long.class, collectionName,
                 collection.isShare(), collection.getCollectionComments(), userId);
 
-        String getRecordId = "SELECT records_id " +
-                "FROM records " +
-                "WHERE title = ?;";
-
-        Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
-
-        String addCollectionRec = "INSERT INTO collections_records(collections_id, records_id) " +
-                "VALUES(?, ?);";
-
-        jdbcTemplate.update(addCollectionRec, collectionId, recordId);
 
     }
 
@@ -68,4 +57,20 @@ public class JdbcCollectionDao implements CollectionDao{
 
         return collections;
     }
+
+    /*
+
+       // String getRecordId = "SELECT records_id " +
+                //"FROM records " +
+               // "WHERE title = ?;";
+
+        //Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
+
+        String addCollectionRec = "INSERT INTO collections_records(collections_id, records_id) " +
+                "VALUES(?, ?);";
+
+        jdbcTemplate.update(addCollectionRec, collectionId, record.getRecordId());
+     */
+
+
 }

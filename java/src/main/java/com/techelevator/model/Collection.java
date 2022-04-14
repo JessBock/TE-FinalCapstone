@@ -5,8 +5,8 @@ public class Collection {
     private long collectionId;
     private String collectionName;
     private long count;
-    private boolean share;
-    private String collectionComments;
+    private boolean share = false;
+    private String collectionComments = "";
     private long userId;
 
     public long getCollectionId() {

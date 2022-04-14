@@ -1,10 +1,14 @@
 import axios from 'axios';
 
 export default {
-    addCollection(collection) {
+    addCollection(collectionName) {
        
-        return axios.post('/collections/add', collection);
+        return axios.post('/collections/add', collectionName);
     
+    },
+
+    getCollections() {
+        return axios.get('/collections');
     }
 
 

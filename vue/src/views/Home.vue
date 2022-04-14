@@ -1,10 +1,11 @@
 <template>
   <div class="home">
     <h1>My Library | </h1><h1><router-link v-bind:to="{name: 'view-collections'}">My Collections</router-link></h1>
+    <input type='text' v-model='collectionName' placeholder="Enter A Collection Name"/>
+    <button id="addToCollection" type="submit" v-on:click.prevent='createCollection(collectionName)'>Create A New Collection </button>
     <div class="library">
     <div class="record" v-for="libraryRecord in library" v-bind:key="libraryRecord.id">
-      <input type='text' v-model='collection.collectionName' placeholder="Enter A Collection Name to Add To..."/>
-      <button id="addToCollection" type="submit" v-on:click.prevent='addToCollection(collection, record)'>Add To Collection </button>
+      
       <img v-bind:src="libraryRecord.coverImg" />
       <h2>{{libraryRecord.title}}</h2>
       <h2 v-for="artist in libraryRecord.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
@@ -27,10 +28,7 @@ export default {
   data() {
     return {
       library: [],
-      collection: {
-        collectionName: '',
-        records: []
-      }
+      collectionName: ''
     }
   },
   created() {
@@ -51,14 +49,13 @@ export default {
         }
       });
     },
-    addToCollection(collection, record) {
-      collection.records.push(record);
-      this.$store.commit('SAVE_TO_COLLECTION',collection);
+    createCollection(collectionName) {
+      this.$store.commit('SAVE_TO_COLLECTION', collectionName);
 
-      collectionService.addCollection(collection);
+      collectionService.addCollection(collectionName);
         
       this.collection.collectionName = ''; 
-      this.collection.records = [];
+     
 
           
   }

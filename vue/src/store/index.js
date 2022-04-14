@@ -21,10 +21,12 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     library: [],
-    collection: {
+    collection: [
+      {
       collectionName: '',
       records: []
     }
+  ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -54,8 +56,8 @@ export default new Vuex.Store({
       )
     },
     SAVE_TO_COLLECTION(state, collection) {
-      state.collection.collectionName = collection.collectionName;
-      state.collection.records.push(collection.records);
+      //state.collection.collectionName = collection.collectionName;
+      state.collection.push(collection);
   }
   }
 })
