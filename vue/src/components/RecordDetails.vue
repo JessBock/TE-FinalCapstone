@@ -41,16 +41,15 @@ export default {
 
     methods: {
       saveToLibrary(newRecord) {
-        
-        this.$store.commit('SAVE_TO_LIBRARY', newRecord);
-
-        recordService.saveToDB(newRecord)
-        .then(
-          this.newRecord = {},
-          alert("Record Added To Library"),
-          this.$router.push({name: 'home'}),
-          location.reload()
-        );
+        this.$confirm("You want to add '" + this.recordDetails.title + "' to your library?", "Add Record", 'question').then(() => {
+          this.$store.commit('SAVE_TO_LIBRARY', newRecord);
+          recordService.saveToDB(newRecord)
+          .then(
+            this.newRecord = {},
+            this.$router.push({name: 'home'}),
+            location.reload()
+          );
+        });
       }
     }
 

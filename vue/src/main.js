@@ -3,9 +3,10 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
-//import './assets/css/style.css'
+import VueSimpleAlert from "vue-simple-alert";
 
 Vue.config.productionTip = false
+Vue.use(VueSimpleAlert);
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 

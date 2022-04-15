@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h1>My Library | </h1><h1><router-link v-bind:to="{name: 'view-collections'}">My Collections</router-link></h1>
+    <nav class="home_navigation">
+      <h1>My Library |</h1>
+      <h1><router-link v-bind:to="{name: 'view-collections'}">My Collections</router-link></h1>
+    </nav>
     <input type='text' v-model='collectionName' placeholder="Enter A Collection Name"/>
     <button id="addToCollection" type="submit" v-on:click.prevent='createCollection(collectionName)'>Create A New Collection </button>
     <div class="library">
@@ -81,6 +84,7 @@ h1 {
   background: black;
   padding: 10px;
   border-radius: 5px;
+  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
 }
 
 .record{
@@ -97,8 +101,10 @@ h1 {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
+  background-image: url('../assets/Gramophone_Vinyl_LP_Record.png');
   background-position: center;
+  background-size: 600px;
+  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
   
 }
 
@@ -108,6 +114,11 @@ h1 {
 
 #addToCollection {
   margin-bottom: 15px;
+}
+
+.home_navigation {
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>

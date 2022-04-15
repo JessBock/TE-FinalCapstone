@@ -39,7 +39,6 @@
         class="form-control"
         name="premium_user"
         v-model="user.user_premium"     
-        checked
         />
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">

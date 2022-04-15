@@ -84,7 +84,7 @@ export default {
   margin-top: 200px;
   justify-items: end;
   text-decoration-color: honeydew;
-  font-family: vinyl-regular;
+  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
 
   
 }

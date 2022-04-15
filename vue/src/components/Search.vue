@@ -10,7 +10,7 @@
         </div>
       </div>
       <div>
-          <record-details v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
+          <record-details class="record-details" v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
       </div>
   </form>
 </template>
@@ -109,9 +109,11 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1462983196');
+  background-image: url('../assets/Gramophone_Vinyl_LP_Record.png');
   background-position: center;
   background-size: 525px;
+  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-size: 13px;
 }
 
 img {
@@ -119,6 +121,9 @@ img {
   height: 300px;
 }
 
-
+.record-details {
+  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-size: 17px;
+}
 
 </style>
