@@ -84,7 +84,7 @@ h1 {
   background: black;
   padding: 10px;
   border-radius: 5px;
-  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
 }
 
 .record{
@@ -104,7 +104,8 @@ h1 {
   background-image: url('../assets/Gramophone_Vinyl_LP_Record.png');
   background-position: center;
   background-size: 600px;
-  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
+  font-size:10px;
   
 }
 

@@ -112,7 +112,7 @@ export default {
   background-image: url('../assets/Gramophone_Vinyl_LP_Record.png');
   background-position: center;
   background-size: 525px;
-  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
   font-size: 13px;
 }
 
@@ -122,7 +122,7 @@ img {
 }
 
 .record-details {
-  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
   font-size: 17px;
 }
 

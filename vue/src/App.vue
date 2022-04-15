@@ -11,28 +11,6 @@
   </div>
 </template>
 
-<style scoped>
-@font-face {
-  /*font-family: 'vinyl-regular';
-  src: local('vinyl-regular'), 
-    url('./assets/Vinyl-Regular.ttf') format("truetype");
-  font-family: 'limelight-regular';
-  src: local('limelight-regular'), 
-    url('./assets/Limelight-Regular.ttf') format("truetype");
-  font-family: 'carosello-regular';
-  src: local('carosello-regular'), 
-    url('./assets/Carosello-Regular.ttf') format("truetype");*/
-  font-family: 'frontage-condensed-outline';
-  src: local('frontage-condensed-outline'), 
-    url('./assets/FrontageCondensed-Outline.ttf') format("truetype");
-}
-
-.home, .user {
-  color: honeydew;
-}
-
-
-</style>
 <script>
 import Search from '@/components/Search.vue';
 
@@ -41,16 +19,43 @@ export default {
   components: {
     Search
   }
- 
 }
 </script>
 
 
 
-<style>
-button {
-  font-family:'Franklin Gothic Medium', serif;
+<style scoped>
+@font-face {
+  /*
+  font-family: 'vinyl-regular';
+  src: local('vinyl-regular'),
+  url('./assets/Vinyl-Regular.ttf') format("truetype");
+  */
+
+    
+  font-family: 'limelight-regular';
+  src: local('limelight-regular'),
+  url('./assets/Limelight-Regular.ttf') format("truetype");
+  
+
+
+  /*
+  font-family: 'carosello-regular';
+  src: local('carosello-regular'),
+  url('./assets/Carosello-Regular.ttf') format("truetype");
+  */
+
+  /*
+  font-family: 'frontage-condensed-outline';
+  src: local('frontage-condensed-outline'),
+  url('./assets/FrontageCondensed-Outline.ttf') format("truetype");
+  */
 }
 
-</style>
 
+.home, .user {
+  color: honeydew;
+}
+
+
+</style>
