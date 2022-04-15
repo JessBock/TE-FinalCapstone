@@ -81,7 +81,8 @@ export default {
 
 #login {
   display: grid;
-  margin-top: 200px;
+  margin-top: 35vh;
+  margin-right: 5vw;
   justify-items: end;
   text-decoration-color: honeydew;
   font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
