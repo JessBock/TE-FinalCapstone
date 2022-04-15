@@ -34,20 +34,17 @@ public class CollectionController {
         return collections;
     }
 
-<<<<<<< Updated upstream
     @RequestMapping(path= "/collections/{collectionId}", method = RequestMethod.DELETE)
     public void deleteCollection(@PathVariable Long collectionId) {
         collectionDao.deleteCollection(collectionId);
     }
-=======
+
     @RequestMapping(path = "/collections/{collectionId}", method= RequestMethod.GET)
     public List<RecordDTO> getCollectionById(@PathVariable long collectionId) {
         List<RecordDTO> recordsInCollection = collectionDao.getRecordsByCollectionId(collectionId);
         return recordsInCollection;
 
     }
-
->>>>>>> Stashed changes
 
 
 }

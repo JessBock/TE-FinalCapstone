@@ -43,11 +43,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         List<Collection> collections = new ArrayList<>();
 
-<<<<<<< Updated upstream
         String getCollections = "SELECT collection_name, collections_id, share, collection_comments, user_id " +
-=======
-        String getCollections = "SELECT collection_name, collections_id " +
->>>>>>> Stashed changes
                 "FROM collections " +
                 "WHERE user_id = ?;";
 
@@ -57,12 +53,10 @@ public class JdbcCollectionDao implements CollectionDao{
             Collection collection = new Collection();
             collection.setCollectionName(results.getString("collection_name"));
             collection.setCollectionId(results.getLong("collections_id"));
-<<<<<<< Updated upstream
             collection.setShare(results.getBoolean("share"));
             collection.setCollectionComments(results.getString("collection_comments"));
             collection.setUserId(results.getLong("user_id"));
-=======
->>>>>>> Stashed changes
+
             collections.add(collection);
         }
 
@@ -73,8 +67,8 @@ public class JdbcCollectionDao implements CollectionDao{
         String getRecordId = "SELECT records_id " +
                 "FROM records " +
                 "WHERE title = ?;";
+*/
 
-<<<<<<< Updated upstream
     @Override
     public void deleteCollection(Long collectionId) {
 
@@ -90,9 +84,9 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
     /*
-=======
+
         Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
->>>>>>> Stashed changes
+
 
         String getCollectionId = "SELECT collections_id " +
                 "FROM collections " +
