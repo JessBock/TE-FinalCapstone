@@ -74,9 +74,12 @@ public class JdbcRecordDao implements RecordDao {
                 "DELETE FROM artists " +
                 "WHERE records_id = ?; " +
 
+                "DELETE FROM collections_records " +
+                "WHERE records_id = ?;" +
+
                 "DELETE FROM records " +
                 "WHERE records_id = ?;";
-        jdbcTemplate.update(sql, recordId, recordId, recordId, recordId, recordId, recordId);
+        jdbcTemplate.update(sql, recordId, recordId, recordId, recordId, recordId, recordId, recordId);
     }
     @Override
     public List<RecordDTO> getLibrary(User user) {
