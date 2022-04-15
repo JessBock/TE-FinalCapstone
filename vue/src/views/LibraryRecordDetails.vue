@@ -1,0 +1,49 @@
+<template>
+  <div class='recordDetails'>
+      
+      <img v-bind:src="details.coverImg" />
+      <h1>{{details.artists[0].name}}</h1>
+      <h2>{{details.title}}</h2>
+      <div v-for="track in details.tracklist" v-bind:key="track.position">
+          {{track.title}} : {{track.duration}} - {{track.position}}
+      </div>
+      <select>
+          <option value='collection1' ></option>
+      </select>
+  </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            details: {}
+        }
+    },
+    created() {
+        this.details = this.$store.state.library.find( record => {
+            return record.recordId === this.$route.params.id;
+        }
+
+        )
+    }
+}
+</script>
+
+<style>
+.recordDetails{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    margin: 1vw;
+    padding: 20px;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+</style>

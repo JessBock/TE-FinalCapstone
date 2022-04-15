@@ -8,6 +8,7 @@ import store from '../store/index'
 import Results from '@/views/Results.vue'
 import Collections from '@/views/Collections.vue'
 import CollectionDetails from '@/views/CollectionDetails.vue'
+import LibraryRecordDetails from '@/views/LibraryRecordDetails.vue'
 
 Vue.use(Router)
 
@@ -80,7 +81,16 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
-    }
+    },
+
+  {
+      path: '/library/:id',
+      name: 'library-record-details',
+      component: LibraryRecordDetails,
+      meta: {
+        requiresAuth: false
+      }
+  }
 
   ]
 })

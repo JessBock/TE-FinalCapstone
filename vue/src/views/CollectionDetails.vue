@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div v-for="record in collection.records" v-bind:key="record.id" v-bind:collection="collection">
+    <h2>{{collection.name}}</h2>
+    <div v-for="record in collection.records" v-bind:key="record.recordId" v-bind:collection="collection">
       <h1>{{record.title}}</h1>
+      <img v-bind:src="record.coverImg" />
+      
     </div>
+    
   </div>
 </template>
 
@@ -16,29 +20,35 @@ export default {
   data() {
     return {
       collection: {
+        name: '',
         records: [
           {
             title: '',
             coverImg: '',
+            recordId: ''
           }
         ]
       }
     }
   },
   created() {
-    collectionService.getCollectionById(this.$route.params.collection.collectionId)
+    collectionService.getCollectionById(this.$route.params.id)
     .then( response => {
-      this.collection.records =  response.data;
+      this.collection.records = response.data;
+      });
+
+
+
+  },
+
+  methods: {
+      getCollectionName() {
+         this.collection.name = collectionService.getCollectionName(this.$route.params.id);
+         return this.collection.name;
+      }
       
-      /*{
-            
-            title: '',
-            coverImg: '',
-      } */
-      
-      
-     
-    })
+  
+    
   }
 
 

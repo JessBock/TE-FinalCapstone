@@ -5,6 +5,7 @@ export default {
         return axios.get('/search/' + searchTerm);
     },
 
+    //calls discogs api
     getRecordById(id) {
         return axios.get('/releases/' + id);
     },
@@ -19,6 +20,8 @@ export default {
 
     getLibrary() {
         return axios.get('/library');
-    }
+    },
+
+
 
 }

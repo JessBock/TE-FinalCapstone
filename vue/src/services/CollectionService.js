@@ -10,17 +10,22 @@ export default {
     getCollections() {
         return axios.get('/collections');
     },
-<<<<<<< Updated upstream
-=======
 
     getCollectionById(collectionId) {
         return axios.get('/collections/' + collectionId);
-    }
+    },
 
->>>>>>> Stashed changes
 
     deleteCollection(collectionId) {
         return axios.delete('/collections/' + collectionId);
+    },
+
+    getCollectionName(collectionId) {
+        return axios.get('/collections/' + collectionId + '/name');
+    },
+
+    addRecordToCollection(recordId, collectionId) {
+        return axios.post('/collections/' + collectionId + '/add', recordId)
     }
 
 }

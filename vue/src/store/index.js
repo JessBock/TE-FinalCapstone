@@ -58,6 +58,10 @@ export default new Vuex.Store({
     SAVE_TO_COLLECTION(state, collection) {
       //state.collection.collectionName = collection.collectionName;
       state.collection.push(collection);
+  },
+
+  SET_LIBRARY(state, payload) {
+      state.library = payload;
   }
   }
 })

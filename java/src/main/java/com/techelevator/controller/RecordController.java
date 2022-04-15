@@ -37,7 +37,7 @@ public class RecordController {
 
 
     @RequestMapping(value = "/releases/{id}", method = RequestMethod.GET)
-    public RecordDTO getRecordByResourceURL(@PathVariable String id) {
+    public RecordDTO getRecordByIdFromDiscogs(@PathVariable String id) {
         RecordDTO record = discogs.getRecords(id);
         return record;
     }
@@ -59,5 +59,8 @@ public class RecordController {
         List<RecordDTO> library = recordDao.getLibrary(user);
         return library;
     }
+
+
+
 
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class JdbcCollectionDao implements CollectionDao{
+public class JdbcCollectionDao implements CollectionDao {
     private JdbcTemplate jdbcTemplate;
     private UserDao userDao;
     private RecordDao recordDao;
@@ -43,38 +43,27 @@ public class JdbcCollectionDao implements CollectionDao{
 
         List<Collection> collections = new ArrayList<>();
 
-<<<<<<< Updated upstream
+
         String getCollections = "SELECT collection_name, collections_id, share, collection_comments, user_id " +
-=======
-        String getCollections = "SELECT collection_name, collections_id " +
->>>>>>> Stashed changes
                 "FROM collections " +
                 "WHERE user_id = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(getCollections, user.getId());
 
-        while(results.next()) {
+        while (results.next()) {
             Collection collection = new Collection();
             collection.setCollectionName(results.getString("collection_name"));
             collection.setCollectionId(results.getLong("collections_id"));
-<<<<<<< Updated upstream
             collection.setShare(results.getBoolean("share"));
             collection.setCollectionComments(results.getString("collection_comments"));
             collection.setUserId(results.getLong("user_id"));
-=======
->>>>>>> Stashed changes
+
             collections.add(collection);
         }
 
         return collections;
     }
-/*
-    public void addRecordToCollection(RecordDTO record) {
-        String getRecordId = "SELECT records_id " +
-                "FROM records " +
-                "WHERE title = ?;";
 
-<<<<<<< Updated upstream
     @Override
     public void deleteCollection(Long collectionId) {
 
@@ -89,10 +78,51 @@ public class JdbcCollectionDao implements CollectionDao{
 
     }
 
-    /*
-=======
+
+    public List<RecordDTO> getRecordsByCollectionId(long collectionId) {
+        List<RecordDTO> recordsInCollection = new ArrayList<>();
+
+        String sql = "SELECT records.records_id, title, image " +
+                "FROM records " +
+                "JOIN collections_records ON records.records_id = collections_records.records_id " +
+                "WHERE collections_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
+        while (results.next()) {
+            RecordDTO record = new RecordDTO();
+            record.setRecordId(results.getLong("records_id"));
+            record.setTitle(results.getString("title"));
+            record.setCoverImg(results.getString("image"));
+            recordsInCollection.add(record);
+        }
+
+        return recordsInCollection;
+    }
+
+    public String getCollectionName(long collectionId) {
+
+        String sql = "SELECT collection_name " +
+                "FROM collections " +
+                "WHERE collections_id = ?;";
+
+        String collectionName = jdbcTemplate.queryForObject(sql, String.class, collectionId);
+
+        return collectionName;
+    }
+
+    public void addRecordToCollection(long recordId, long collectionId) {
+        String sql = "INSERT INTO collections_records(records_id, collections_id) " +
+                "VALUES(? , ?);";
+
+        jdbcTemplate.update(sql, recordId, collectionId);
+
+
+    }
+
+  /*
+
         Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
->>>>>>> Stashed changes
+
 
         String getCollectionId = "SELECT collections_id " +
                 "FROM collections " +
@@ -104,30 +134,4 @@ public class JdbcCollectionDao implements CollectionDao{
         jdbcTemplate.update(addCollectionRec,  record.getRecordId());
     }
 */
-
-    public List<RecordDTO> getRecordsByCollectionId(long collectionId) {
-        List <RecordDTO> recordsInCollection = new ArrayList<>();
-
-        String sql = "SELECT records.records_id, title, image " +
-                "FROM records " +
-                "JOIN collections_records ON records.records_id = collections_records.records_id " +
-                "WHERE collections_id = ?;";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
-        while(results.next()) {
-            RecordDTO record = new RecordDTO();
-            record.setRecordId(results.getLong("records.records_id"));
-            record.setTitle(results.getString("title"));
-            record.setCoverImg(results.getString("image"));
-            recordsInCollection.add(record);
-        }
-
-        return recordsInCollection;
-    }
-
-
-
-
-
-
 }

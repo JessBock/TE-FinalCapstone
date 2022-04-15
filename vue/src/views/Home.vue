@@ -7,9 +7,9 @@
     <input type='text' v-model='collectionName' placeholder="Enter A Collection Name"/>
     <button id="addToCollection" type="submit" v-on:click.prevent='createCollection(collectionName)'>Create A New Collection </button>
     <div class="library">
-    <div class="record" v-for="libraryRecord in library" v-bind:key="libraryRecord.id">
+    <div class="record" v-for="libraryRecord in library" v-bind:key="libraryRecord.recordId">
       
-      <img v-bind:src="libraryRecord.coverImg" />
+      <img v-bind:src="libraryRecord.coverImg" v-on:click="goToTracks(libraryRecord.recordId)"/>
       <h2>{{libraryRecord.title}}</h2>
       <h2 v-for="artist in libraryRecord.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
       <h3>{{libraryRecord.year}}</h3>
@@ -39,6 +39,7 @@ export default {
       .then(
         response => {
           this.library = response.data;
+          this.$store.commit('SET_LIBRARY', response.data);
         }
       )
   },
@@ -50,6 +51,7 @@ export default {
         .then(
           response => {
           this.library = response.data;
+          
           },
           location.reload()
         )
@@ -64,11 +66,13 @@ export default {
           this.$router.push({name: 'view-collections'});
         }
       })
-        
-      
-     
-
           
+  },
+
+  goToTracks(id) {
+
+
+    this.$router.push({name: 'library-record-details', params: {id: id}});
   }
   }
 };
