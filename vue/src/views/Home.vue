@@ -58,9 +58,14 @@ export default {
     createCollection(collectionName) {
       this.$store.commit('SAVE_TO_COLLECTION', collectionName);
 
-      collectionService.addCollection(collectionName);
+      collectionService.addCollection(collectionName)
+      .then( response => {
+        if(response.status === 200) {
+          this.$router.push({name: 'view-collections'});
+        }
+      })
         
-      this.collection.collectionName = ''; 
+      
      
 
           

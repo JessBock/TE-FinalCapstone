@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class Collection {
 
     private long collectionId;
@@ -8,6 +10,13 @@ public class Collection {
     private boolean share = false;
     private String collectionComments = "";
     private long userId;
+    private RecordDTO recordToAdd;
+
+    public Collection(String collectionName, RecordDTO recordToAdd) {
+        this.collectionName = collectionName;
+        this.recordToAdd = recordToAdd;
+    }
+    public Collection(){}
 
     public long getCollectionId() {
         return collectionId;

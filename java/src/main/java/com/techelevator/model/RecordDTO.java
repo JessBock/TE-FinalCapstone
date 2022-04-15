@@ -71,4 +71,11 @@ public class RecordDTO {
     public void setRecordId(Long recordId) {
         this.recordId = recordId;
     }
+
+    public RecordDTO () {};
+
+    public RecordDTO(Long recordId, String title) {
+        this.recordId = recordId;
+        this.title = title;
+    }
 }

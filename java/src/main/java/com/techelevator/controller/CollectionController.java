@@ -8,6 +8,7 @@ import com.techelevator.model.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,8 @@ public class CollectionController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path= "/collections/add", method = RequestMethod.POST)
-    public void saveCollection(@RequestBody String collectionName, Principal principal) {
+    @RequestMapping(path= "/collections/{collectionName}", method = RequestMethod.POST)
+    public void saveCollection(@PathVariable String collectionName, Principal principal) {
         collectionDao.addCollection(collectionName, principal);
     }
 
@@ -33,10 +34,20 @@ public class CollectionController {
         return collections;
     }
 
+<<<<<<< Updated upstream
     @RequestMapping(path= "/collections/{collectionId}", method = RequestMethod.DELETE)
     public void deleteCollection(@PathVariable Long collectionId) {
         collectionDao.deleteCollection(collectionId);
     }
+=======
+    @RequestMapping(path = "/collections/{collectionId}", method= RequestMethod.GET)
+    public List<RecordDTO> getCollectionById(@PathVariable long collectionId) {
+        List<RecordDTO> recordsInCollection = collectionDao.getRecordsByCollectionId(collectionId);
+        return recordsInCollection;
+
+    }
+
+>>>>>>> Stashed changes
 
 
 }

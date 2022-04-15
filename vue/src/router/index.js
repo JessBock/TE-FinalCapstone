@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Results from '@/views/Results.vue'
 import Collections from '@/views/Collections.vue'
+import CollectionDetails from '@/views/CollectionDetails.vue'
 
 Vue.use(Router)
 
@@ -71,6 +72,14 @@ const router = new Router({
         requiresAuth: false
       }
 
+    },
+    {
+      path: '/collections/:id',
+      name: 'collection-details',
+      component: CollectionDetails,
+      meta: {
+        requiresAuth: false
+      }
     }
 
   ]

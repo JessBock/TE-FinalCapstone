@@ -1,8 +1,12 @@
 <template>
   <div >
       <div v-for="collection in collections" v-bind:key="collection.collectionId">
+<<<<<<< Updated upstream
       <h1>{{collection.collectionName}}</h1>
       <button class = "deleteBtn" v-on:click="deleteCollection(collection.collectionId)">Delete Collection</button>
+=======
+      <h1><router-link v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
+>>>>>>> Stashed changes
       </div>
   </div>
 </template>
@@ -13,7 +17,8 @@ export default {
     name: 'collections',
     data() {
         return {
-            collections: []
+            collections: [],
+            
         }
     },
    

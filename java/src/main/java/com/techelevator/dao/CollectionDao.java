@@ -12,7 +12,11 @@ public interface CollectionDao {
 
     public List<Collection> getCollections(User user);
 
+<<<<<<< Updated upstream
     public void deleteCollection(Long collectionId);
+=======
+    public List<RecordDTO> getRecordsByCollectionId(long collectionId);
+>>>>>>> Stashed changes
 
 
 }
