@@ -47,6 +47,7 @@ public class CollectionController {
 
     }
 
+
     //this doesnt work lol
     @RequestMapping(path = "/collections/{collectionId}/name", method=RequestMethod.GET)
     public String getCollectionName(@PathVariable long collectionId) {
@@ -59,6 +60,12 @@ public class CollectionController {
         collectionDao.addRecordToCollection(record.getRecordId(), collectionId);
     }
 
+
+
+    @RequestMapping(path = "/collections/{collectionId}/{recordId}", method = RequestMethod.DELETE)
+    public void deleteRecordFromCollection(@PathVariable Long collectionId, @PathVariable Long recordId) {
+        collectionDao.deleteRecordFromCollection(collectionId, recordId);
+    }
 
 
 

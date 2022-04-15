@@ -12,7 +12,6 @@ public interface CollectionDao {
 
     public List<Collection> getCollections(User user);
 
-
     public void deleteCollection(Long collectionId);
 
     public List<RecordDTO> getRecordsByCollectionId(long collectionId);
@@ -20,6 +19,8 @@ public interface CollectionDao {
     public String getCollectionName(long collectionId);
 
     public void addRecordToCollection(long recordId, long collectionId);
+
+    public void deleteRecordFromCollection(Long recordId, Long collectionId);
 
 
 
