@@ -92,7 +92,6 @@ CREATE TABLE records_genres(
 -- modify tables once all tables are created as necessary
 ALTER TABLE users ADD CONSTRAINT FK_users_collections FOREIGN KEY (collections_id) REFERENCES collections(collections_id);
 ALTER TABLE collections ADD CONSTRAINT FK_collections_users FOREIGN KEY (user_id) REFERENCES users(user_id);
-ALTER TABLE records ADD CONSTRAINT FK_records_artists FOREIGN KEY (artists_id) REFERENCES artists(artists_id);
 ALTER TABLE records ADD CONSTRAINT FK_records_tracks FOREIGN KEY (tracks_id) REFERENCES tracks(tracks_id);
 ALTER TABLE records ADD CONSTRAINT FK_records_genres FOREIGN KEY (genres_id) REFERENCES genres(genres_id);
 
