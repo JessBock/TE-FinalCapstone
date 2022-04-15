@@ -16,5 +16,7 @@ public interface CollectionDao {
 
     public List<RecordDTO> getRecordsByCollectionId(long collectionId);
 
+    public void deleteRecordFromCollection(Long recordId, Long collectionId);
+
 
 }

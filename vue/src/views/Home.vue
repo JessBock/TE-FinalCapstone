@@ -9,7 +9,7 @@
     <div class="library">
     <div class="record" v-for="libraryRecord in library" v-bind:key="libraryRecord.id">
       
-      <img v-bind:src="libraryRecord.coverImg" />
+      <img class="coverImage" v-bind:src="libraryRecord.coverImg" />
       <h2>{{libraryRecord.title}}</h2>
       <h2 v-for="artist in libraryRecord.artists" v-bind:key ="artist.name">{{artist.name}}</h2>
       <h3>{{libraryRecord.year}}</h3>
@@ -125,6 +125,12 @@ h1 {
 .home_navigation {
   display: flex;
   justify-content: space-between;
+}
+
+.coverImage {
+  width: 250px;
+  height: auto;
+  
 }
 
 </style>

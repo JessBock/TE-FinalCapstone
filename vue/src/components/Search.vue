@@ -2,9 +2,9 @@
   <form v-on:submit.prevent="searchWebsite()">
       <input type="text" v-model="searchTerm"/>
       <button >Search</button>
-      <div class="search_result">
+      <div class="search-result">
         <div class="single-result" v-for="result in results" v-bind:key="result.id" v-bind:result="result">
-          <img v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
+          <img class="searchImage" v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
           <h2> {{result.title}} </h2>
           <h4> {{result.year}} : {{result.genre}}</h4>
         </div>
@@ -116,14 +116,21 @@ export default {
   font-size: 13px;
 }
 
-img {
-  max-width: 300px;
-  height: 300px;
+.searchImage {
+  max-width: 250px;
+  height: auto;
 }
 
 .record-details {
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
   font-size: 17px;
 }
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 
 </style>

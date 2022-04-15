@@ -46,5 +46,10 @@ public class CollectionController {
 
     }
 
+    @RequestMapping(path = "/collections/{collectionId}/{recordId}", method = RequestMethod.DELETE)
+    public void deleteRecordFromCollection(@PathVariable Long collectionId, @PathVariable Long recordId) {
+        collectionDao.deleteRecordFromCollection(collectionId, recordId);
+    }
+
 
 }

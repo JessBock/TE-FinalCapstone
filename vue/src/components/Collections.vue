@@ -37,8 +37,21 @@ methods: {
         )
       )
     },
+
+    deleteCollectionFromRecord(collectionId, recordId){
+      collectionService.deleteRecordFromCollection(collectionId, recordId)
+       .then(
+        collectionService.getCollections()
+        .then( response => {
+          this.collections = response.data;
+          },
+          location.reload()
+        )
+      )
+    },
+    }
   }
-}
+
 
 </script>
 

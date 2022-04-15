@@ -15,8 +15,13 @@ export default {
         return axios.get('/collections/' + collectionId);
     },
 
+
     deleteCollection(collectionId) {
         return axios.delete('/collections/' + collectionId);
+    },
+
+    deleteRecordFromCollection(collectionId, recordId) {
+        return axios.delete('/collections/' + collectionId + recordId);
     }
 
 }

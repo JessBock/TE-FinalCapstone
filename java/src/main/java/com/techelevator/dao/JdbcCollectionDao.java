@@ -83,7 +83,18 @@ public class JdbcCollectionDao implements CollectionDao{
 
     }
 
-    /*
+    @Override
+    public void deleteRecordFromCollection(Long recordId, Long collectionId) {
+
+        String deleteRecordFromCollection = "DELETE " +
+                "FROM collections_records " +
+                "WHERE records_id = ? and collections_id = ?; ";
+
+        jdbcTemplate.update(deleteRecordFromCollection, recordId, collectionId);
+
+    }
+
+        /*
 
         Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
 
@@ -98,7 +109,8 @@ public class JdbcCollectionDao implements CollectionDao{
         jdbcTemplate.update(addCollectionRec,  record.getRecordId());
     }
 */
-
+    
+@Override
     public List<RecordDTO> getRecordsByCollectionId(long collectionId) {
         List <RecordDTO> recordsInCollection = new ArrayList<>();
 
