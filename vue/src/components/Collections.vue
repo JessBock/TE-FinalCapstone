@@ -1,7 +1,8 @@
 <template>
   <div >
-      <div v-for="collection in collections" v-bind:key="collection.id">
+      <div v-for="collection in collections" v-bind:key="collection.collectionId">
       <h1>{{collection.collectionName}}</h1>
+      <button class = "deleteBtn" v-on:click="deleteCollection(collection.collectionId)">Delete Collection</button>
       </div>
   </div>
 </template>
@@ -21,10 +22,22 @@ export default {
     .then( response => {
       this.collections = response.data;
     })
+  },
+methods: {
+  deleteCollection(collectionId) {
+    collectionService.deleteCollection(collectionId)
+    .then(
+        collectionService.getCollections()
+        .then( response => {
+          this.collections = response.data;
+          },
+          location.reload()
+        )
+      )
+    },
   }
-
-    
 }
+
 </script>
 
 <style>

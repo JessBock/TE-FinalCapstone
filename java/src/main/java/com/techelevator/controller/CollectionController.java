@@ -33,6 +33,10 @@ public class CollectionController {
         return collections;
     }
 
+    @RequestMapping(path= "/collections/{collectionId}", method = RequestMethod.DELETE)
+    public void deleteCollection(@PathVariable Long collectionId) {
+        collectionDao.deleteCollection(collectionId);
+    }
 
 
 }

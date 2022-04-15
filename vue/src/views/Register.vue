@@ -38,7 +38,9 @@
         id="premium_user" 
         class="form-control"
         name="premium_user"
-        v-model="user.user_premium"     
+        v-model="user.user_premium" 
+        
+      
         />
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -92,6 +94,9 @@ export default {
             }
           });
       }
+    },
+    premium() {
+      this.user.user_premium = !this.user.user_premium;
     },
     clearErrors() {
       this.registrationErrors = false;

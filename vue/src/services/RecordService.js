@@ -20,4 +20,5 @@ export default {
     getLibrary() {
         return axios.get('/library');
     }
+
 }

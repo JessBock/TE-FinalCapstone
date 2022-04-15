@@ -12,5 +12,7 @@ public interface CollectionDao {
 
     public List<Collection> getCollections(User user);
 
+    public void deleteCollection(Long collectionId);
+
 
 }

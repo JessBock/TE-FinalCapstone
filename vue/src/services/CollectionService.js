@@ -9,8 +9,10 @@ export default {
 
     getCollections() {
         return axios.get('/collections');
+    },
+
+    deleteCollection(collectionId) {
+        return axios.delete('/collections/' + collectionId);
     }
-
-
 
 }

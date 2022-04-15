@@ -43,7 +43,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         List<Collection> collections = new ArrayList<>();
 
-        String getCollections = "SELECT collection_name " +
+        String getCollections = "SELECT collection_name, collections_id, share, collection_comments, user_id " +
                 "FROM collections " +
                 "WHERE user_id = ?;";
 
@@ -52,10 +52,28 @@ public class JdbcCollectionDao implements CollectionDao{
         while(results.next()) {
             Collection collection = new Collection();
             collection.setCollectionName(results.getString("collection_name"));
+            collection.setCollectionId(results.getLong("collections_id"));
+            collection.setShare(results.getBoolean("share"));
+            collection.setCollectionComments(results.getString("collection_comments"));
+            collection.setUserId(results.getLong("user_id"));
             collections.add(collection);
         }
 
         return collections;
+    }
+
+    @Override
+    public void deleteCollection(Long collectionId) {
+
+        String deleteCollection = "DELETE " +
+                "FROM collections_records " +
+                "WHERE collections_id = ?;" +
+                "DELETE " +
+                "FROM collections " +
+                "WHERE collections_id = ?; ";
+
+        jdbcTemplate.update(deleteCollection, collectionId, collectionId);
+
     }
 
     /*
