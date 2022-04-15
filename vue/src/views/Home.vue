@@ -42,12 +42,15 @@ export default {
   methods: {
     deleteFromLibrary(record) {
       recordService.deleteFromLibrary(record.recordId)
-      .then( response => {
-        if(response.status == 200) {
-          this.$store.commit('DELETE_FROM_STORE', record)
-          recordService.getLibrary();
-        }
-      });
+      .then(
+        recordService.getLibrary()
+        .then(
+          response => {
+          this.library = response.data;
+          },
+          location.reload()
+        )
+      )
     },
     createCollection(collectionName) {
       this.$store.commit('SAVE_TO_COLLECTION', collectionName);
