@@ -1,136 +1,58 @@
 <template>
   <form v-on:submit.prevent="searchWebsite()">
-      <input type="text" v-model="searchTerm"/>
-      <button >Search</button>
-      <div class="search-result">
-        <div class="single-result" v-for="result in results" v-bind:key="result.id" v-bind:result="result">
-          <img class="searchImage" v-bind:src="result.cover_image" v-on:click="goToDetails(result.id)"/>
-          <h2> {{result.title}} </h2>
-          <h4> {{result.year}} : {{result.genre}}</h4>
-        </div>
-      </div>
-      <div>
-          <record-details class="record-details" v-bind:key="recordDetails" v-bind:record="record" v-bind:recordDetails="recordDetails"/>
-      </div>
+    <input type="text" v-model="searchTerm" />
+    <button>Search</button>
   </form>
 </template>
 
 <script>
-import recordService from '@/services/RecordService.js';
-import RecordDetails from './RecordDetails.vue';
+import recordService from "@/services/RecordService.js";
 
 export default {
-  components: { RecordDetails },
-    name: "search",
-    
-    data() {
-        return {
-            searchTerm: '',
-            results: [],
-            recordDetails: [],
-            errorMsg: '',
-            coverImg: '',
-            record: {}
-        }
-    },
+  name: "search",
 
-    methods: {
-        searchWebsite() {
-            const self = this;
-            recordService.search(this.searchTerm)
-            .then( response => {
-                self.results = self.filterResults(response.data.results);
-                this.$router.push({name: 'results'});
-                self.recordDetails = [];
-            })
-            .catch( error => {
-            if (error.response) {
-            this.errorMsg = "Received an error from the server: " + error.response.statusText;
-            } else if (error.request) {
-             this.errorMsg = "Error submitting request, could not reach server";
-            } else {
-              this.errorMsg = "I'm sorry, there was an error. Please try again later.";
-        }
-           
-      })
-     },
-        goToDetails(id) {
-          const self = this;
-            recordService.getRecordById(id)
-            .then( response => {
-                self.recordDetails = response.data;
-                self.record = self.results.find( element => {
-                    return element.id === id;
-                });
-                
-                self.results = [];
-            })
-            .catch( error => {
-              if (error.response) {
-            this.errorMsg = "Received an error from the server: " + error.response.statusText;
-            } else if (error.request) {
-             this.errorMsg = "Error submitting request, could not reach server";
-            } else {
-              this.errorMsg = "I'm sorry, there was an error. Please try again later.";
-        }
+  data() {
+    return {
+      searchTerm: "",
+      errorMsg: "",
+    };
+  },
+
+  methods: {
+    searchWebsite() {
+      const self = this;
+      recordService
+        .search(this.searchTerm)
+        .then((response) => {
+          this.$store.commit(
+            "UPDATE_RESULTS",
+            self.filterResults(response.data.results)
+          );
+          this.$router.push({ name: "results" });
+          this.$store.commit("UPDATE_RECORD_DETAILS", []);
+        })
+        .catch((error) => {
+          if (error.response) {
+            this.errorMsg =
+              "Received an error from the server: " + error.response.statusText;
+          } else if (error.request) {
+            this.errorMsg = "Error submitting request, could not reach server";
+          } else {
+            this.errorMsg =
+              "I'm sorry, there was an error. Please try again later.";
+          }
+        });
+    },
+    filterResults(results) {
+      return results.filter((img) => {
+        return img.type == "master";
       });
     },
-
-    filterResults(results) {
-        return results.filter( img => {
-          return img.type == 'master';
-        })
-      }
-    },
-    computed: {
-      
-
-    },
-    created() {
-      
-    },
-  
-}
+  },
+  computed: {},
+  created() {},
+};
 </script>
 
 <style scope>
-
-.single-result{
-  display: flex;
-  flex-direction: column;
-  background-color: black;
-  color: white;
-  margin: 1vw;
-  padding: 20px;
-  width: 500px;
-  height: 500px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-radius: 50%;
-  margin: 5px;
-  background-image: url('../assets/Gramophone_Vinyl_LP_Record.png');
-  background-position: center;
-  background-size: 525px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
-  font-size: 13px;
-}
-
-.searchImage {
-  max-width: 250px;
-  height: auto;
-}
-
-.record-details {
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
-  font-size: 17px;
-}
-
-.search-results {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-
 </style>
