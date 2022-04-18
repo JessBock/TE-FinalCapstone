@@ -62,22 +62,24 @@ export default new Vuex.Store({
     SAVE_TO_COLLECTION(state, collection) {
       //state.collection.collectionName = collection.collectionName;
       state.collection.push(collection);
-  },
+    },
+    SET_LIBRARY(state, payload) {
+        state.library = payload;
+    },
+    UPDATE_RESULTS(state, listResults) {
+      state.results = listResults;
+    },
 
-  SET_LIBRARY(state, payload) {
-      state.library = payload;
-  },
-  UPDATE_RESULTS(state, listResults) {
-    state.results = listResults;
-  },
+    UPDATE_RECORD_DETAILS(state, album) {
+      state.recordDetails = album;
+    },
 
-  UPDATE_RECORD_DETAILS(state, album) {
-    state.recordDetails = album;
-  },
-
-  UPDATE_RECORD(state, record) {
-    state.record = record;
-  }
+    UPDATE_RECORD(state, record) {
+      state.record = record;
+    },
+    SET_COLLECTION(state, collection) {
+      state.collection = collection;
+    }
 }
 
 
