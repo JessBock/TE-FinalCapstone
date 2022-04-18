@@ -7,6 +7,10 @@
         v-bind:key="result.id"
         v-bind:result="result"
       >
+      <div class="background">
+        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
+      </div>
+      <div class="album-art">
         <img
           class="searchImage"
           v-bind:src="result.cover_image"
@@ -14,6 +18,7 @@
         />
         <h2>{{ result.title }}</h2>
         <h4>{{ result.year }} : {{ result.genre }}</h4>
+        </div>
       </div>
     </div>
 
@@ -127,9 +132,9 @@ export default {
   margin: 5px;
 }
 .single-result {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background-color: black;
   color: white;
   margin: 1vw;
   padding: 20px;
@@ -140,9 +145,9 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  background-image: url("../assets/Gramophone_Vinyl_LP_Record.png");
+  /*background-image: url("../assets/Gramophone_Vinyl_LP_Record.png"); 
   background-position: center;
-  background-size: 600px;
+  background-size: 600px; */
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
   font-size: 13px;
@@ -157,9 +162,46 @@ export default {
     "frontage-condensed-outline", serif;
   font-size: 17px;
 }
+
+.album-art {
+  z-index: 1;
+}
+
+.background {
+  position:absolute;
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+ width: 100%;
+ align-items: center;
+ justify-content: center;
+ 
+}
+
+.background img{
+ 
+ position:absolute;
+ background-position: center;
+ height: 100%;
+ width: 100%;
+ z-index: 0;
+}
+
+.background:hover {
+ animation: rotation 8s infinite linear;
+}
 .search-result {
   display: flex;
   flex-wrap: wrap;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 </style>
 

@@ -21,11 +21,16 @@
       Create A New Collection
     </button>
     <div class="library">
+      
       <div
         class="record"
         v-for="libraryRecord in library"
         v-bind:key="libraryRecord.id"
-      >
+      ><div class="background">
+        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
+      </div>
+
+      <div class="album-art">
         <img class="coverImage" v-bind:src="libraryRecord.coverImg"  v-on:click="goToTracks(libraryRecord.recordId)" />
         <h2>{{ libraryRecord.title }}</h2>
         <h2 v-for="artist in libraryRecord.artists" v-bind:key="artist.name">
@@ -36,6 +41,7 @@
         <button class="deleteBtn" v-on:click="deleteFromLibrary(libraryRecord)">
           Delete From Library
         </button>
+        </div>
       </div>
     </div>
   </div>
@@ -102,6 +108,7 @@ export default {
 .library {
   display: flex;
   flex-wrap: wrap;
+  
 }
 h1 {
   color: white;
@@ -113,9 +120,9 @@ h1 {
 }
 
 .record {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background-color: black;
   color: white;
   margin: 1vw;
   padding: 20px;
@@ -126,16 +133,48 @@ h1 {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  background-image: url("../assets/Gramophone_Vinyl_LP_Record.png");
-  background-position: center;
-  background-size: 600px;
+  /*background-position: center;
+ background-size: 600px; */
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
   font-size: 10px;
+  
+  cursor: pointer;
+  
+  
+}
+
+.album-art {
+  z-index: 1;
+}
+.background {
+  position:absolute;
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+ width: 100%;
+ align-items: center;
+ justify-content: center;
+ 
+}
+
+.background img{
+ 
+ position:absolute;
+ background-position: center;
+ height: 100%;
+ width: 100%;
+ z-index: 0;
+}
+
+.background:hover {
+ animation: rotation 8s infinite linear;
 }
 
 .deleteBtn {
   margin: 10px;
+  cursor: pointer;
+
 }
 
 #addToCollection {
@@ -150,5 +189,17 @@ h1 {
 .coverImage {
   width: 250px;
   height: auto;
+  
+}
+
+
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 </style>

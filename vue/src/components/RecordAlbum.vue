@@ -29,6 +29,7 @@ html,body {
 	background-image: url('../assets/2manydjsrecord.jpg'); 
 	background-size: cover;
   background-attachment: fixed;
+  z-index: 0;
 }
 #wrap {
 	background-color: rgba(0,0,0,0.8);	
