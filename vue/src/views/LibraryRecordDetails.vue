@@ -33,10 +33,15 @@ export default {
     },
     methods: {
         saveToCollection() {
-            collectionService.addRecordToCollection(this.details.recordId, this.collectionId)
-            
-            
-            
+            this.$confirm("You want to add '" +
+            this.details.title + 
+            "' to your collection?",
+            "Add Record",
+            "question").then(() => {
+                collectionService.addRecordToCollection(this.details.recordId, this.collectionId);
+                this.$router.push({name: "home"})
+            });
+           
         },
        
     },
