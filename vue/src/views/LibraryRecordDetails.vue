@@ -58,6 +58,15 @@ export default {
             
             
             
+            this.$confirm("You want to add '" +
+            this.details.title + 
+            "' to your collection?",
+            "Add Record",
+            "question").then(() => {
+                collectionService.addRecordToCollection(this.details.recordId, this.collectionId);
+                this.$router.push({name: "home"})
+            });
+           
         },
 
         setCommentsAndCondition() {

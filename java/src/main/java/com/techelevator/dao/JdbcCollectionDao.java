@@ -133,6 +133,8 @@ public class JdbcCollectionDao implements CollectionDao {
             recordsInCollection.add(record);
         }
 
+        
+
         return recordsInCollection;
     }
 
