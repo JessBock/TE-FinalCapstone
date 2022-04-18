@@ -22,6 +22,9 @@ export default {
         return axios.get('/library');
     },
 
+    setCommentsAndCondition(payload) {
+        return axios.put('/library/addComments', payload);
+    }
 
 
 }

@@ -14,4 +14,6 @@ public interface RecordDao {
 
     public List<RecordDTO> getLibrary(User user);
 
+    public void setCommentsAndCondition(long recordId, String comments, String condition);
+
 }

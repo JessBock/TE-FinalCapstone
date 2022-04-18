@@ -15,6 +15,8 @@ public class RecordDTO {
     @JsonProperty("tracklist")
     private List<Tracks> tracklist = new ArrayList<>();
     private Long recordId;
+    private String comments = "";
+    private String condition = "";
 
     public String getYear(){
         return year;
@@ -70,6 +72,22 @@ public class RecordDTO {
 
     public void setRecordId(Long recordId) {
         this.recordId = recordId;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     public RecordDTO () {};
