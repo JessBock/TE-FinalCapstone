@@ -27,21 +27,17 @@ public class RecordController {
         this.userDao = userDao;
     }
 
-
     @RequestMapping(value = "/search/{expression}", method = RequestMethod.GET)
     public SearchResponse search(@PathVariable String expression) {
         SearchResponse response = discogs.search(expression);
         return response;
     }
 
-
-
     @RequestMapping(value = "/releases/{id}", method = RequestMethod.GET)
     public RecordDTO getRecordByIdFromDiscogs(@PathVariable String id) {
         RecordDTO record = discogs.getRecords(id);
         return record;
     }
-
 
     @RequestMapping(path= "/library", method= RequestMethod.POST)
     public void saveRecord(@RequestBody RecordDTO record, Principal principal) {
@@ -58,6 +54,11 @@ public class RecordController {
         User user = userDao.findByUsername(principal.getName());
         List<RecordDTO> library = recordDao.getLibrary(user);
         return library;
+    }
+
+    @RequestMapping(path = "/library/addComments", method = RequestMethod.PUT)
+    public void addCommentsAndCondition(@RequestBody RecordDTO recordDTO) {
+        recordDao.setCommentsAndCondition(recordDTO.getRecordId(), recordDTO.getComments(), recordDTO.getCondition());
     }
 
 

@@ -24,7 +24,7 @@
       
       <div
         class="record"
-        v-for="libraryRecord in library"
+        v-for="libraryRecord in $store.state.library"
         v-bind:key="libraryRecord.id"
       ><div class="background">
         <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
@@ -55,7 +55,6 @@ export default {
   name: "home",
   data() {
     return {
-      library: [],
       collectionName: "",
     };
   },
@@ -79,10 +78,9 @@ export default {
     deleteFromLibrary(record) {
       recordService.deleteFromLibrary(record.recordId).then(
         recordService.getLibrary().then((response) => {
-          this.library = response.data;
           this.$store.commit('SET_LIBRARY', response.data);
           },
-          location.reload()
+         location.reload()
         )
       )
     },

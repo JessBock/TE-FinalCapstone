@@ -54,6 +54,15 @@ public class JdbcRecordDao implements RecordDao {
                     record.getTracklist().get(i).getDuration(), record.getTracklist().get(i).getPosition());
         }
     }
+
+    @Override
+    public void setCommentsAndCondition(long recordId, String comments, String condition) {
+        String sql = "UPDATE records " +
+                "SET records_comments = ?, condition = ? " +
+                "WHERE records_id = ?;";
+        jdbcTemplate.update(sql, comments, condition, recordId);
+    }
+
     @Override
     public void deleteFromLibrary(Long recordId) {
         String sql = "DELETE FROM users_records " +
@@ -85,7 +94,7 @@ public class JdbcRecordDao implements RecordDao {
     public List<RecordDTO> getLibrary(User user) {
         RecordDTO record = new RecordDTO();
         List<RecordDTO> records = new ArrayList<>();
-        String sql = "SELECT DISTINCT records.title, records.year, records.image, records.records_id " +
+        String sql = "SELECT DISTINCT records.title, records.year, records.image, records.records_id, records_comments, condition " +
                 "FROM records " +
                 "JOIN users_records ON users_records.records_id = records.records_id " +
                 "JOIN artists ON records.records_id = artists.records_id " +
@@ -136,6 +145,8 @@ public class JdbcRecordDao implements RecordDao {
         record.setYear(rowSet.getString("year"));
         record.setCoverImg(rowSet.getString("image"));
         record.setRecordId(rowSet.getLong("records_id"));
+        record.setComments(rowSet.getString("records_comments"));
+        record.setCondition(rowSet.getString("condition"));
         return record;
     }
 
