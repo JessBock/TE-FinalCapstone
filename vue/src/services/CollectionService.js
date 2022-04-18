@@ -29,7 +29,7 @@ export default {
     },
         
     deleteRecordFromCollection(collectionId, recordId) {
-        return axios.delete('/collections/' + collectionId + recordId);
+        return axios.delete('/collections/' + collectionId + '/' + recordId);
     }
 
 }

@@ -56,8 +56,8 @@ public class CollectionController {
     }
 
     @RequestMapping(path= "/collections/{collectionId}/add", method=RequestMethod.POST)
-    public void addRecordToCollection(@RequestBody RecordDTO record, @PathVariable long collectionId) {
-        collectionDao.addRecordToCollection(record.getRecordId(), collectionId);
+    public void addRecordToCollection(@PathVariable long collectionId, @RequestBody long recordId) {
+        collectionDao.addRecordToCollection(recordId, collectionId);
     }
 
 

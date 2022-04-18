@@ -7,8 +7,8 @@
       <div v-for="track in details.tracklist" v-bind:key="track.position">
           {{track.title}} : {{track.duration}} - {{track.position}}
       </div>
-      <select>
-          <option value='collection'  v-for="collection in $store.state.collection" v-bind:key="collection.collectionId">{{collection.collectionName}}</option>
+      <select v-model.number='collectionId' >
+          <option v-for="collection in $store.state.collection"  v-bind:value="collection.collectionId" v-bind:key="collection.collectionId">{{collection.collectionName}}</option>
       </select>
       <button type=submit v-on:click.prevent="saveToCollection()">Add to Collection</button>
   </div>
@@ -20,7 +20,8 @@ import collectionService from '@/services/CollectionService.js';
 export default {
     data() {
         return {
-            details: {}
+            details: {},
+            collectionId: ''
         }
     },
     created() {
@@ -32,9 +33,15 @@ export default {
     },
     methods: {
         saveToCollection() {
+            collectionService.addRecordToCollection(this.details.recordId, this.collectionId)
             
-            collectionService.addRecordToCollection(this.details.recordId, this.$store.state.collection.collectionId)
-        }
+            
+            
+        },
+       
+    },
+    computed: {
+        
     }
 }
 </script>
