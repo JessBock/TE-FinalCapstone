@@ -1,6 +1,7 @@
 <template>
   <div class="collectionMain">
-    <h2>{{collection.name}}</h2>
+    <h4><router-link class ="returnMainCollections" v-bind:to="{name: 'view-collections'}">Return</router-link></h4>
+    <h2 id="collectionName">{{collection.name.collectionName}}</h2>
     <div class="recordsInCollection">
       <div class="record" v-for="record in collection.records" v-bind:key="record.recordId" v-bind:collection="collection">
 
@@ -50,9 +51,9 @@ export default {
     .then( response => {
       this.collection.records = response.data;
       });
-         this.collection.name = collectionService.getCollectionName(this.$route.params.id).then(() => {
-          return this.collection.name;
-         })
+         this.collection.name = this.$store.state.collection.find(element => {
+           return element.collectionId === this.$route.params.id
+         });
   },
 
   methods: {
@@ -69,6 +70,20 @@ export default {
 </script>
 
 <style scoped>
+.returnMainCollections {
+  color: white;
+  background-color: black;
+}
+#collectionName {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  font-size: 40px;
+  padding: 4px;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+}
+
 .collectionMain {
   display: flex;
   flex-direction: column;
@@ -98,7 +113,7 @@ export default {
  background-size: 600px; */
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
-  font-size: 10px;
+  font-size: 20px;
   
   
   
@@ -133,4 +148,16 @@ export default {
   height: auto;
 }
 
+.background:hover {
+ animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
 </style>

@@ -77,14 +77,15 @@ export default {
   },
   methods: {
     deleteFromLibrary(record) {
-      recordService.deleteFromLibrary(record.recordId).then(
-        recordService.getLibrary().then((response) => {
-          this.library = response.data;
-          this.$store.commit('SET_LIBRARY', response.data);
-          },
-          location.reload()
+
+        recordService.deleteFromLibrary(record.recordId).then(
+          recordService.getLibrary().then((response) => {
+            this.library = response.data;
+            this.$store.commit('SET_LIBRARY', response.data);
+            },
+            location.reload()
+          )
         )
-      )
     },
     createCollection(collectionName) {
       this.$store.commit("SAVE_TO_COLLECTION", collectionName);
