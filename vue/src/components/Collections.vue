@@ -24,9 +24,11 @@ export default {
     },
    
   created() {
+    const self = this;
     collectionService.getCollections()
     .then( response => {
-      this.collections = response.data;
+      self.collections = response.data;
+      this.$store.commit('SET_COLLECTION', response.data);
     })
   },
 methods: {
