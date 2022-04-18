@@ -66,7 +66,14 @@ export default {
           this.library = response.data;
           this.$store.commit('SET_LIBRARY', response.data);
         }
-      )
+      );
+
+    const self = this;
+    collectionService.getCollections()
+    .then( response => {
+      self.collections = response.data;
+      this.$store.commit('SET_COLLECTION', response.data);
+    });
   },
   methods: {
     deleteFromLibrary(record) {

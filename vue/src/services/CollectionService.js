@@ -25,7 +25,7 @@ export default {
     },
 
     addRecordToCollection(recordId, collectionId) {
-        return axios.post('/collections/' + collectionId + '/add', recordId);
+        return axios.post('/collections/' + collectionId + '/add/' + recordId);
     },
         
     deleteRecordFromCollection(collectionId, recordId) {

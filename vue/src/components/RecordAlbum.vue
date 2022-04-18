@@ -52,7 +52,7 @@ html,body {
 	height: 100%;
   /*album cover, make random if possible
   */
-	background-image: url('../assets/bg_image1.jpg'); 
+	background-image: url('../assets/logo.png'); 
 	background-size: 100% 100%;
 	box-shadow: 5px 0 20px 0 rgba(0,0,0,0.6),
               inset 0 0 10px 5px rgba(255, 255, 255, 0.2),
