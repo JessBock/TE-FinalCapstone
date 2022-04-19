@@ -148,7 +148,7 @@ public class JdbcRecordDao implements RecordDao {
                 "JOIN users_records on records.records_id = users_records.records_id " +
                 "WHERE users_records.user_id = ?;";
         SqlRowSet genreSet = jdbcTemplate.queryForRowSet(genres, userId);
-        if(genreSet.next()) {
+        try {
            while (genreSet.next()) {
                Stat genre = new Stat();
                String countString = "SELECT COUNT(records.records_id) " +
@@ -163,7 +163,9 @@ public class JdbcRecordDao implements RecordDao {
                genre.setName(genreName);
                genreStats.add(genre);
            }
-       }
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
+        }
         return genreStats;
     }
 
@@ -176,7 +178,7 @@ public class JdbcRecordDao implements RecordDao {
                 "JOIN users_records on records.records_id = users_records.records_id " +
                 "WHERE users_records.user_id = ?;";
         SqlRowSet artistSet = jdbcTemplate.queryForRowSet(artists, userId);
-        if(artistSet.next()) {
+        try {
             while (artistSet.next()) {
                 Stat artist = new Stat();
                 String countString = "SELECT COUNT(records.records_id) " +
@@ -190,6 +192,8 @@ public class JdbcRecordDao implements RecordDao {
                 artist.setCount(count);
                 artistStats.add(artist);
             }
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
         }
         return artistStats;
     }
@@ -217,7 +221,7 @@ public class JdbcRecordDao implements RecordDao {
                 "JOIN records_genres on records.records_id = records_genres.records_id " +
                 "JOIN genres on records_genres.genres_id = genres.genres_id";
         SqlRowSet genreSet = jdbcTemplate.queryForRowSet(genres);
-        if(genreSet.next()) {
+        try {
             while (genreSet.next()) {
                 Stat genre = new Stat();
                 String countString = "SELECT COUNT(records.records_id) " +
@@ -231,6 +235,8 @@ public class JdbcRecordDao implements RecordDao {
                 genre.setName(genreName);
                 genreStats.add(genre);
             }
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
         }
         return genreStats;
     }
@@ -242,7 +248,7 @@ public class JdbcRecordDao implements RecordDao {
                 "FROM artists " +
                 "JOIN records on artists.records_id = records.records_id ";
         SqlRowSet artistSet = jdbcTemplate.queryForRowSet(artists);
-        if(artistSet.next()) {
+        try {
             while (artistSet.next()) {
                 Stat artist = new Stat();
                 String countString = "SELECT COUNT(records.records_id) " +
@@ -255,6 +261,8 @@ public class JdbcRecordDao implements RecordDao {
                 artist.setCount(count);
                 artistStats.add(artist);
             }
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
         }
         return artistStats;
     }

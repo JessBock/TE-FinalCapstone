@@ -1,5 +1,6 @@
 <template>
   <div>
+<!-- Search Results -->
     <div class="search-result">
       <div
         class="single-result"
@@ -22,21 +23,30 @@
       </div>
     </div>
 
+<!-- Record Details -->
     <div class="recordDetails" v-show="show == true">
-      <h1 v-for="artist in newRecord.artists" v-bind:key="artist.id">
-        {{ artist.name }}
-      </h1>
-      <img v-bind:src="$store.state.record.cover_image" />
-      <h5 v-for="track in newRecord.tracklist" v-bind:key="track.position">
-        {{ track.title }} : {{ track.duration }} - {{ track.position }}
-      </h5>
+      <div class="recordImage">
+        <img v-bind:src="$store.state.record.cover_image" />
+        <h1 v-for="artist in newRecord.artists" v-bind:key="artist.id">
+          {{ artist.name }}
+        </h1>
+        <h2>{{newRecord.title}}</h2>
+      
+      </div>
 
+      <div class="text">
+      <div class="tracks">
+        <h2>Tracks:</h2>
+        <div v-for="track in newRecord.tracklist" v-bind:key="track.position">
+        {{ track.title }} : {{ track.duration }} - {{ track.position }}
+        </div>
+      </div>
       <button
         type="submit"
         v-on:click="saveToLibrary(newRecord)"
-      >
-        Add To Library
+      >Add To Library
       </button>
+      </div>
     </div>
   </div>
 </template>
@@ -117,19 +127,18 @@ export default {
 </script>
 
 <style scoped>
+div {
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+}
 .recordDetails {
   display: flex;
-  flex-direction: column;
-  background-color: black;
-  color: white;
-  margin: 1vw;
-  padding: 20px;
-  width: 30vw;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 20px;
-  margin: 5px;
+  margin: auto;
+  flex-grow: 1;
+  height: 85vh;
 }
 .single-result {
   position: relative;
@@ -145,22 +154,12 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  /*background-image: url("../assets/Gramophone_Vinyl_LP_Record.png"); 
-  background-position: center;
-  background-size: 600px; */
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
   font-size: 13px;
   cursor: pointer;
 }
 .searchImage {
   max-width: 250px;
   height: auto;
-}
-.record-details {
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
-  font-size: 17px;
 }
 
 .album-art {
@@ -203,6 +202,37 @@ export default {
     transform: rotate(359deg);
   }
 }
+
+
+
+
+
+
+.text {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    margin: 1vw;
+    flex-grow: 2;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.text div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.tracks {
+    flex-direction: column;
+}
+
 </style>
 
     

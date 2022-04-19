@@ -60,5 +60,9 @@ export default {
   color: honeydew;
 }
 
+#nav {
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+}
 
 </style>
