@@ -68,23 +68,25 @@
         class="record"
         v-for="libraryRecord in $store.state.library"
         v-bind:key="libraryRecord.id"
-      ><div class="background">
-        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
-      </div>
+      >
+        <div class="background">
+          <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
+        </div>
 
-      <div class="album-art">
-        <img class="coverImage" v-bind:src="libraryRecord.coverImg"  v-on:click="goToTracks(libraryRecord.recordId)" />
-        <h2>{{ libraryRecord.title }}</h2>
-        <h2 v-for="artist in libraryRecord.artists" v-bind:key="artist.name">
-          {{ artist.name }}
-        </h2>
-        <h3>{{ libraryRecord.year }}</h3>
-        <h3>{{ libraryRecord.genre }}</h3>
-        <button class="deleteBtn" v-on:click="deleteFromLibrary(libraryRecord)">
-          Delete From Library
-        </button>
+        <div class="album-art">
+          <img class="coverImage" v-bind:src="libraryRecord.coverImg"  v-on:click="goToTracks(libraryRecord.recordId)" />
+          <h2>{{ libraryRecord.title }}</h2>
+          <h2 v-for="artist in libraryRecord.artists" v-bind:key="artist.name">
+            {{ artist.name }}
+          </h2>
+          <h3>{{ libraryRecord.year }}</h3>
+          <h3>{{ libraryRecord.genre }}</h3>
+          <button class="deleteBtn" v-on:click="deleteFromLibrary(libraryRecord)">
+            Delete From Library
+          </button>
         </div>
       </div>
+
     </div>
   </div>
   
@@ -144,15 +146,10 @@ export default {
         "' from your library?",
         "REMOVE RECORD",
         "warning")
-      .then(()=> {
-        recordService.deleteFromLibrary(record.recordId)
-        .then(
-          recordService.getLibrary().then((response) => {
-          this.$store.commit('SET_LIBRARY', response.data);
-        },
-        location.reload())
-        )}
-      )
+      .then(() => {
+        recordService.deleteFromLibrary(record.recordId);
+        location.reload();
+      })
     },
     createCollection(collectionName) {
       this.$store.commit("SAVE_TO_COLLECTION", collectionName);

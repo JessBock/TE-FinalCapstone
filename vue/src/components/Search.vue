@@ -28,8 +28,9 @@ export default {
             "UPDATE_RESULTS",
             self.filterResults(response.data.results)
           );
-          this.$router.push({ name: "results" });
+          this.searchTerm = "";
           this.$store.commit("UPDATE_RECORD_DETAILS", []);
+          this.$router.push({ name: "results" });
         })
         .catch((error) => {
           if (error.response) {

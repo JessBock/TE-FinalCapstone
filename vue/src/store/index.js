@@ -53,11 +53,10 @@ export default new Vuex.Store({
       state.library.push(newRecord);
       
     },
-    DELETE_FROM_STORE(state, record) {
-      state.library.splice(
-        state.library.findIndex(album => album.id === record.id),
-        1
-      )
+    DELETE_FROM_STORE(state, recordId) {
+      let index = state.library.findIndex(album => {album.id === recordId})
+      state.library.splice(index, 1);
+      
     },
 
     SAVE_TO_COLLECTION(state, collection) {

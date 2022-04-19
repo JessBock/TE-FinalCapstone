@@ -1,7 +1,7 @@
 <template>
   <div>
 <!-- Search Results -->
-    <div class="search-result">
+    <div class="search-result" v-show="show == false">
       <div
         class="single-result"
         v-for="result in $store.state.results"
@@ -56,11 +56,13 @@ import recordService from "@/services/RecordService.js";
 
 export default {
   name: "record-details",
-
   data() {
     return {
-      show: false,
+      
     };
+  },
+  created() {
+  
   },
   computed: {
     newRecord() {
@@ -74,6 +76,13 @@ export default {
       };
       return newRecord;
     },
+    show() {
+      let isShow = false;
+      if(this.$store.state.recordDetails.length !== 0) {
+        isShow = true;
+      }
+      return isShow;
+    }
   },
 
   methods: {
@@ -90,8 +99,7 @@ export default {
           .saveToDB(newRecord)
           .then(
             (this.newRecord = {}),
-            this.$router.push({ name: "home" }),
-            location.reload()
+            this.$store.commit("UPDATE_RECORD_DETAILS", [])
           );
       });
     },
@@ -99,16 +107,12 @@ export default {
       recordService
         .getRecordById(id)
         .then((response) => {
-
-          this.show = true;
-
           this.$store.commit("UPDATE_RECORD_DETAILS", response.data);
 
           let album = this.$store.state.results.find((element) => {
-            return element.id === id;
+            return element.id == id;
           });
-          this.$store.commit("UPDATE_RECORD", album);
-          this.$store.commit("UPDATE_RESULTS", []);
+          this.$store.commit("UPDATE_RECORD", album)
         })
         .catch((error) => {
           if (error.response) {
