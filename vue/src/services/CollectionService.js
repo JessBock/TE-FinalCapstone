@@ -30,6 +30,10 @@ export default {
         
     deleteRecordFromCollection(collectionId, recordId) {
         return axios.delete('/collections/' + collectionId + '/' + recordId);
+    },
+
+    getPublicCollections() {
+        return axios.get('/all-collections');
     }
 
 }

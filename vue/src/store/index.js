@@ -29,7 +29,8 @@ export default new Vuex.Store({
       collectionName: '',
       records: []
     }
-  ]
+  ],
+    publicCollection: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -79,6 +80,10 @@ export default new Vuex.Store({
     },
     SET_COLLECTION(state, collection) {
       state.collection = collection;
+    },
+
+    SET_PUBLIC_COLLECTIONS(state, collection) {
+      state.publicCollection = collection;
     }
 }
 

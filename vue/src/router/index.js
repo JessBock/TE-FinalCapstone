@@ -9,6 +9,8 @@ import Results from '@/views/Results.vue'
 import Collections from '@/views/Collections.vue'
 import CollectionDetails from '@/views/CollectionDetails.vue'
 import LibraryRecordDetails from '@/views/LibraryRecordDetails.vue'
+import PublicCollections from '@/views/PublicCollections.vue'
+import PublicCollectionDetails from '@/views/PublicCollectionDetails.vue'
 
 Vue.use(Router)
 
@@ -87,6 +89,22 @@ const router = new Router({
       path: '/library/:id',
       name: 'library-record-details',
       component: LibraryRecordDetails,
+      meta: {
+        requiresAuth: false
+      }
+  },
+  {
+      path: '/public/collections',
+      name: 'public-collections',
+      component: PublicCollections,
+      meta: {
+        requiresAuth: false
+      }
+  },
+  {
+      path: '/public/collections/:id',
+      name: 'public-collection-details',
+      component: PublicCollectionDetails,
       meta: {
         requiresAuth: false
       }
