@@ -85,7 +85,7 @@ export default {
   margin-right: 5vw;
   justify-items: end;
   text-decoration-color: honeydew;
-  font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
 
   
 }

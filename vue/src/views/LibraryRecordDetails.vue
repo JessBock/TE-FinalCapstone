@@ -13,14 +13,14 @@
             </select>
             <button type=submit v-on:click.prevent="saveToCollection()">Add to Collection</button>
         </div>
-
+        <hr/>
         <div class="tracks">
             <h2>Tracks:</h2>
             <div v-for="track in details.tracklist" v-bind:key="track.position">
             {{track.title}} : {{track.duration}} - {{track.position}}
             </div>
         </div> 
-
+        <hr/>
             <form class="comment-form" v-on:submit.prevent="setCommentsAndCondition">
                 <div>
                 <label for="condition">Record Condition:</label>
@@ -89,6 +89,10 @@ export default {
 </script>
 
 <style>
+hr {
+    margin: 5px;
+    width: 45vw;
+}
 .text {
     display: flex;
     flex-direction: column;

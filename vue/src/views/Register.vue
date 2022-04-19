@@ -32,16 +32,17 @@
         v-model="user.confirmPassword"
         required
       />
-      <label for="premium_user" class="premium_selector"> Premium user </label>
-      <input 
-        type="checkbox" 
-        id="premium_user" 
-        class="form-control"
-        name="premium_user"
-        v-model="user.user_premium" 
-        
-      
+      <div class= "premium_checkbox">
+        <input 
+          type="checkbox" 
+          id="premium_user" 
+          class="form-control"
+          name="premium_user"
+          v-model="user.user_premium"     
         />
+        <label for="premium_user" class="premium_selector"> Premium user </label>
+
+      </div>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -109,13 +110,15 @@ export default {
 <style scoped>
 
 .form-register {
+    padding-top: 50px;
     width: 20vw;
-    background-image: url('../assets/Led-Zeppelin-Clip.jpg'); 
-    background-size: 100%;
+    background-image: url('../assets/logo.png');
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
-    
+    font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
 }
+
 
 .login-query {
   color: whitesmoke;
@@ -125,6 +128,7 @@ export default {
 body, h1 {
 color: honeydew;
 text-align: center;
+font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
 }
 
 #register {
@@ -146,10 +150,16 @@ button {
 form {
   display:flex;
     flex-direction: column;
-    width:30vw;
+    height: 35vh;
+    width:auto;
     flex-basis: 45%;
     border-style: double;
-    border-radius: 100px; 
+    border-radius: 50%; 
+    background-color: black;
+    font-family: "vinyl-regular", "alt-retro-light", "carosello-regular", "frontage-condensed-outline", serif;
     
+}
+.premium_checkbox {
+  padding: 5px;
 }
 </style>
