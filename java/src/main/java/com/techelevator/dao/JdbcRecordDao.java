@@ -235,6 +235,43 @@ public class JdbcRecordDao implements RecordDao {
         return genreStats;
     }
 
+    @Override
+    public List<Stat> getDatabaseArtistStats() {
+        List<Stat> artistStats = new ArrayList<>();
+        String artists = "SELECT DISTINCT artists.name " +
+                "FROM artists " +
+                "JOIN records on artists.records_id = records.records_id ";
+        SqlRowSet artistSet = jdbcTemplate.queryForRowSet(artists);
+        if(artistSet.next()) {
+            while (artistSet.next()) {
+                Stat artist = new Stat();
+                String countString = "SELECT COUNT(records.records_id) " +
+                        "FROM artists " +
+                        "JOIN records on artists.records_id = records.records_id " +
+                        "WHERE artists.name = ?;";
+                String artistName = artistSet.getString("name");
+                int count = jdbcTemplate.queryForObject(countString, int.class, artistName);
+                artist.setName(artistName);
+                artist.setCount(count);
+                artistStats.add(artist);
+            }
+        }
+        return artistStats;
+    }
+
+    @Override
+    public int getDatabaseRecordCount() {
+        int count = 0;
+        String sql = "SELECT COUNT(records.records_id) " +
+                "FROM records;";
+        try {
+            count = jdbcTemplate.queryForObject(sql, int.class);
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
+        }
+        return count;
+    }
+
     private RecordDTO mapRowToGetLibrary(SqlRowSet rowSet) {
         RecordDTO record = new RecordDTO();
         record.setTitle(rowSet.getString("title"));

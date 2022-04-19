@@ -40,7 +40,13 @@ export default {
 
     getDatabaseGenreStats() {
         return axios.get('database/genreStats')
+    },
+
+    getDatabaseArtistStats() {
+        return axios.get('database/artistStats')
+    },
+
+    getDatabaseRecordCount() {
+        return axios.get('database/count')
     }
-
-
 }

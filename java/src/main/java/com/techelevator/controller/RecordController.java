@@ -84,7 +84,15 @@ public class RecordController {
         return genreStats;
     }
 
+    @RequestMapping(path = "/database/artistStats", method = RequestMethod.GET)
+    public List<Stat> getDatabaseArtistStats() {
+        List<Stat> artistStats = recordDao.getDatabaseArtistStats();
+        return artistStats;
+    }
 
-
+    @RequestMapping(path = "/database/count", method = RequestMethod.GET)
+    public int getDatabaseRecordCount() {
+        return recordDao.getDatabaseRecordCount();
+    }
 
 }
