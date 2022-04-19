@@ -72,6 +72,18 @@ public class RecordController {
         return artistStats;
     }
 
+    @RequestMapping(path = "/library/count", method = RequestMethod.GET)
+    public int getLibraryCount(Principal principal) {
+        User user = userDao.findByUsername(principal.getName());
+        return recordDao.getUserRecordCount(user.getId());
+    }
+
+    @RequestMapping(path = "/database/genreStats", method = RequestMethod.GET)
+    public List<Stat> getDatabaseGenreStats() {
+        List<Stat> genreStats = recordDao.getDatabaseGenreStats();
+        return genreStats;
+    }
+
 
 
 

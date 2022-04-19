@@ -32,6 +32,14 @@ export default {
 
     getArtistStats() {
         return axios.get('library/artistStats')
+    },
+
+    getUserLibraryCount() {
+        return axios.get('library/count')
+    },
+
+    getDatabaseGenreStats() {
+        return axios.get('database/genreStats')
     }
 
 

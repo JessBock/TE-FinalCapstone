@@ -35,7 +35,8 @@
     </button>
 
     <div class="stats">
-        <h2>Library Stats:</h2>
+        <h2>Library Stats: {{libraryCount}} Total</h2>
+
 
           <table class="genre-table">
             <tr>
@@ -99,7 +100,8 @@ export default {
     return {
       collectionName: "",
       genreStats: {},
-      artistStats: {}
+      artistStats: {},
+      libraryCount: 0
     };
   },
   created() {
@@ -126,7 +128,13 @@ export default {
     recordService.getArtistStats()
     .then(response => {
       this.artistStats = response.data;
+    });
+
+    recordService.getUserLibraryCount()
+    .then(response => {
+      this.libraryCount = response.data
     })
+
   },
   methods: {
     deleteFromLibrary(record) {

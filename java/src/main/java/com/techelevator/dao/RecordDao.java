@@ -21,4 +21,7 @@ public interface RecordDao {
 
     public List<Stat> getArtistStats(Long userId);
 
+    public int getUserRecordCount(Long userId);
+
+    public List<Stat> getDatabaseGenreStats();
 }
