@@ -2,10 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.RecordDao;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.RecordDTO;
-import com.techelevator.model.SearchResponse;
-import com.techelevator.model.SearchResult;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import com.techelevator.services.DiscogsService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +58,41 @@ public class RecordController {
         recordDao.setCommentsAndCondition(recordDTO.getRecordId(), recordDTO.getComments(), recordDTO.getCondition());
     }
 
+    @RequestMapping(path = "/library/genreStats", method = RequestMethod.GET)
+    public List<Stat> getGenreStats(Principal principal) {
+        User user = userDao.findByUsername(principal.getName());
+        List<Stat> genreStats = recordDao.getGenreStats(user.getId());
+        return genreStats;
+    }
 
+    @RequestMapping(path = "/library/artistStats", method = RequestMethod.GET)
+    public List<Stat> getArtistStats(Principal principal) {
+        User user = userDao.findByUsername(principal.getName());
+        List<Stat> artistStats = recordDao.getArtistStats(user.getId());
+        return artistStats;
+    }
 
+    @RequestMapping(path = "/library/count", method = RequestMethod.GET)
+    public int getLibraryCount(Principal principal) {
+        User user = userDao.findByUsername(principal.getName());
+        return recordDao.getUserRecordCount(user.getId());
+    }
+
+    @RequestMapping(path = "/database/genreStats", method = RequestMethod.GET)
+    public List<Stat> getDatabaseGenreStats() {
+        List<Stat> genreStats = recordDao.getDatabaseGenreStats();
+        return genreStats;
+    }
+
+    @RequestMapping(path = "/database/artistStats", method = RequestMethod.GET)
+    public List<Stat> getDatabaseArtistStats() {
+        List<Stat> artistStats = recordDao.getDatabaseArtistStats();
+        return artistStats;
+    }
+
+    @RequestMapping(path = "/database/count", method = RequestMethod.GET)
+    public int getDatabaseRecordCount() {
+        return recordDao.getDatabaseRecordCount();
+    }
 
 }

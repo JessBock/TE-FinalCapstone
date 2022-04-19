@@ -138,6 +138,139 @@ public class JdbcRecordDao implements RecordDao {
        return records;
     }
 
+    @Override
+    public List<Stat> getGenreStats(Long userId) {
+        List<Stat> genreStats = new ArrayList<>();
+        String genres = "SELECT DISTINCT genres.name " +
+                "FROM records " +
+                "JOIN records_genres on records.records_id = records_genres.records_id " +
+                "JOIN genres on records_genres.genres_id = genres.genres_id " +
+                "JOIN users_records on records.records_id = users_records.records_id " +
+                "WHERE users_records.user_id = ?;";
+        SqlRowSet genreSet = jdbcTemplate.queryForRowSet(genres, userId);
+        if(genreSet.next()) {
+           while (genreSet.next()) {
+               Stat genre = new Stat();
+               String countString = "SELECT COUNT(records.records_id) " +
+                       "FROM records " +
+                       "JOIN records_genres on records.records_id = records_genres.records_id " +
+                       "JOIN genres on records_genres.genres_id = genres.genres_id " +
+                       "JOIN users_records on records.records_id = users_records.records_id " +
+                       "WHERE genres.name = ? and users_records.user_id = ?;";
+               String genreName = genreSet.getString("name");
+               int count = jdbcTemplate.queryForObject(countString, int.class, genreName, userId);
+               genre.setCount(count);
+               genre.setName(genreName);
+               genreStats.add(genre);
+           }
+       }
+        return genreStats;
+    }
+
+    @Override
+    public List<Stat> getArtistStats(Long userId) {
+        List<Stat> artistStats = new ArrayList<>();
+        String artists = "SELECT DISTINCT artists.name " +
+                "FROM artists " +
+                "JOIN records on artists.records_id = records.records_id " +
+                "JOIN users_records on records.records_id = users_records.records_id " +
+                "WHERE users_records.user_id = ?;";
+        SqlRowSet artistSet = jdbcTemplate.queryForRowSet(artists, userId);
+        if(artistSet.next()) {
+            while (artistSet.next()) {
+                Stat artist = new Stat();
+                String countString = "SELECT COUNT(records.records_id) " +
+                        "FROM artists " +
+                        "JOIN records on artists.records_id = records.records_id " +
+                        "JOIN users_records on records.records_id = users_records.records_id " +
+                        "WHERE artists.name = ? and users_records.user_id = ?;";
+                String artistName = artistSet.getString("name");
+                int count = jdbcTemplate.queryForObject(countString, int.class, artistName, userId);
+                artist.setName(artistName);
+                artist.setCount(count);
+                artistStats.add(artist);
+            }
+        }
+        return artistStats;
+    }
+
+    @Override
+    public int getUserRecordCount(Long userId) {
+        int count = 0;
+        String sql = "SELECT COUNT(records.records_id) " +
+                "FROM records " +
+                "JOIN users_records on records.records_id = users_records.records_id " +
+                "WHERE users_records.user_id = ?;";
+        try {
+             count = jdbcTemplate.queryForObject(sql, int.class, userId);
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
+        }
+        return count;
+    }
+
+    @Override
+    public List<Stat> getDatabaseGenreStats() {
+        List<Stat> genreStats = new ArrayList<>();
+        String genres = "SELECT DISTINCT genres.name " +
+                "FROM records " +
+                "JOIN records_genres on records.records_id = records_genres.records_id " +
+                "JOIN genres on records_genres.genres_id = genres.genres_id";
+        SqlRowSet genreSet = jdbcTemplate.queryForRowSet(genres);
+        if(genreSet.next()) {
+            while (genreSet.next()) {
+                Stat genre = new Stat();
+                String countString = "SELECT COUNT(records.records_id) " +
+                        "FROM records " +
+                        "JOIN records_genres on records.records_id = records_genres.records_id " +
+                        "JOIN genres on records_genres.genres_id = genres.genres_id " +
+                        "WHERE genres.name = ?;";
+                String genreName = genreSet.getString("name");
+                int count = jdbcTemplate.queryForObject(countString, int.class, genreName);
+                genre.setCount(count);
+                genre.setName(genreName);
+                genreStats.add(genre);
+            }
+        }
+        return genreStats;
+    }
+
+    @Override
+    public List<Stat> getDatabaseArtistStats() {
+        List<Stat> artistStats = new ArrayList<>();
+        String artists = "SELECT DISTINCT artists.name " +
+                "FROM artists " +
+                "JOIN records on artists.records_id = records.records_id ";
+        SqlRowSet artistSet = jdbcTemplate.queryForRowSet(artists);
+        if(artistSet.next()) {
+            while (artistSet.next()) {
+                Stat artist = new Stat();
+                String countString = "SELECT COUNT(records.records_id) " +
+                        "FROM artists " +
+                        "JOIN records on artists.records_id = records.records_id " +
+                        "WHERE artists.name = ?;";
+                String artistName = artistSet.getString("name");
+                int count = jdbcTemplate.queryForObject(countString, int.class, artistName);
+                artist.setName(artistName);
+                artist.setCount(count);
+                artistStats.add(artist);
+            }
+        }
+        return artistStats;
+    }
+
+    @Override
+    public int getDatabaseRecordCount() {
+        int count = 0;
+        String sql = "SELECT COUNT(records.records_id) " +
+                "FROM records;";
+        try {
+            count = jdbcTemplate.queryForObject(sql, int.class);
+        } catch (Exception exception) {
+            System.out.println("Query returned Null");
+        }
+        return count;
+    }
 
     private RecordDTO mapRowToGetLibrary(SqlRowSet rowSet) {
         RecordDTO record = new RecordDTO();

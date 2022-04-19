@@ -24,7 +24,29 @@ export default {
 
     setCommentsAndCondition(payload) {
         return axios.put('/library/addComments', payload);
+    },
+
+    getGenreStats() {
+        return axios.get('library/genreStats')
+    },
+
+    getArtistStats() {
+        return axios.get('library/artistStats')
+    },
+
+    getUserLibraryCount() {
+        return axios.get('library/count')
+    },
+
+    getDatabaseGenreStats() {
+        return axios.get('database/genreStats')
+    },
+
+    getDatabaseArtistStats() {
+        return axios.get('database/artistStats')
+    },
+
+    getDatabaseRecordCount() {
+        return axios.get('database/count')
     }
-
-
 }
