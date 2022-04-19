@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.RecordDTO;
 import com.techelevator.model.SearchResult;
+import com.techelevator.model.Stat;
 import com.techelevator.model.User;
 
 import java.security.Principal;
@@ -15,5 +16,9 @@ public interface RecordDao {
     public List<RecordDTO> getLibrary(User user);
 
     public void setCommentsAndCondition(long recordId, String comments, String condition);
+
+    public List<Stat> getGenreStats(Long userId);
+
+    public List<Stat> getArtistStats(Long userId);
 
 }

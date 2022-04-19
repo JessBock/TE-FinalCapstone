@@ -136,8 +136,11 @@ textarea {
 
 .recordDetails{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     flex-grow: 1;
+    height: 85vh;
     
 }
 

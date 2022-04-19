@@ -24,6 +24,14 @@ export default {
 
     setCommentsAndCondition(payload) {
         return axios.put('/library/addComments', payload);
+    },
+
+    getGenreStats() {
+        return axios.get('library/genreStats')
+    },
+
+    getArtistStats() {
+        return axios.get('library/artistStats')
     }
 
 

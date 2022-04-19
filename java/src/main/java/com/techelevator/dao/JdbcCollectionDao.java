@@ -132,9 +132,6 @@ public class JdbcCollectionDao implements CollectionDao {
             record.setCoverImg(results.getString("image"));
             recordsInCollection.add(record);
         }
-
-
-
         return recordsInCollection;
     }
 
