@@ -22,6 +22,8 @@ public interface CollectionDao {
 
     public void deleteRecordFromCollection(Long recordId, Long collectionId);
 
+    public List<Collection> getPublicCollections();
+
 
 
 }

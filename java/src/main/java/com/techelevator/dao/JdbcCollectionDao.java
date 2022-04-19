@@ -64,12 +64,6 @@ public class JdbcCollectionDao implements CollectionDao {
         return collections;
     }
 
-/*
-    public void addRecordToCollection(RecordDTO record) {
-        String getRecordId = "SELECT records_id " +
-                "FROM records " +
-                "WHERE title = ?;";
-*/
 
 
     @Override
@@ -98,21 +92,6 @@ public class JdbcCollectionDao implements CollectionDao {
 
     }
 
-        /*
-
-        Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
-
-
-        String getCollectionId = "SELECT collections_id " +
-                "FROM collections " +
-                "WHERE collection_name = ?";
-
-        String addCollectionRec = "INSERT INTO collections_records(collections_id, records_id) " +
-                "VALUES(?, ?);";
-
-        jdbcTemplate.update(addCollectionRec,  record.getRecordId());
-    }
-*/
     
 @Override
 
@@ -155,22 +134,29 @@ public class JdbcCollectionDao implements CollectionDao {
 
         jdbcTemplate.update(sql, recordId, collectionId);
 
-
     }
 
-  /*
+    public List<Collection> getPublicCollections() {
+        List <Collection> publicCollections = new ArrayList<>();
 
-        Long recordId = jdbcTemplate.queryForObject(getRecordId, Long.class, record.getTitle());
-
-
-        String getCollectionId = "SELECT collections_id " +
+        String sql = "SELECT collections_id, collection_name, collection_comments " +
                 "FROM collections " +
-                "WHERE collection_name = ?";
+                "WHERE share = true;";
 
-        String addCollectionRec = "INSERT INTO collections_records(collections_id, records_id) " +
-                "VALUES(?, ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        jdbcTemplate.update(addCollectionRec,  record.getRecordId());
+        while(results.next()) {
+            Collection collection = new Collection();
+            collection.setCollectionId(results.getLong("collections_id"));
+            collection.setCollectionName(results.getString("collection_name"));
+            collection.setCollectionComments(results.getString("collection_comments"));
+            publicCollections.add(collection);
+        }
+        return publicCollections;
+
     }
-*/
+
+
+
+
 }

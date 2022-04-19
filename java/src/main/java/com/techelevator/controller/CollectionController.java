@@ -67,6 +67,9 @@ public class CollectionController {
         collectionDao.deleteRecordFromCollection(collectionId, recordId);
     }
 
+    @RequestMapping(path= "/all-collections", method = RequestMethod.GET)
+    public List<Collection> getAllPublicCollections() { return collectionDao.getPublicCollections(); }
+
 
 
 }

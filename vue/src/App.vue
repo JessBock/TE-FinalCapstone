@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link class="home" v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+      <router-link class="home" v-bind:to="{ name: 'home' }">Home</router-link>
+      &nbsp;|&nbsp;
       <!--<router-link v-bind:to="www.google.com">Search</router-link> |-->
-      <router-link class="user" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">User</router-link>
+      <router-link class="user" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout </router-link>
+      &nbsp;|&nbsp;
       <!--<router-link v-bind:to="{ name: 'logout' }" v-else>Login</router-link> -->
+      <router-link class="public-collections" v-bind:to="{ name: 'public-collections' }" > Browse Collections</router-link>
       <search />
     </div>
     <router-view />
@@ -53,7 +56,7 @@ export default {
 }
 
 
-.home, .user {
+.home, .user, .public-collections{
   color: honeydew;
 }
 
