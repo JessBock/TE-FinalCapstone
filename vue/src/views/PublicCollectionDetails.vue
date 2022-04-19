@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="collectionHome">
     <h4><router-link class ="returnPublicCollections" v-bind:to="{name: 'public-collections'}">Return</router-link></h4>
     <h1 id="collectionName">{{collectionName.collectionName}}</h1>
     <div v-for="record in records" v-bind:key="record.recordId">
@@ -40,13 +40,36 @@ export default {
 </script>
 
 <style>
+
+.collectionHome {
+ position: relative;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin: 1vw;
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+  font-size: 10px;
+  
+  cursor: pointer;
+}
 .returnPublicCollections {
-    color: honeydew;
-    background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .albumArt {
-    z-index: 1;
+    z-index: 0;
     
 }
 .albumArt img {
@@ -66,11 +89,18 @@ export default {
 
 .background img{
  
- position:absolute;
- background-position: center;
- height: 100%;
- width: 100%;
- z-index: -10;
+  display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    background-image: url("../assets/Gramophone_Vinyl_LP_Record.png");
+    background-size: 600px;
+    background-position: center;
+    color: white;
+    z-index: 0;
 }
 
 #collectionName {

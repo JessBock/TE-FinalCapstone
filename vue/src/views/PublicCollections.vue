@@ -82,5 +82,27 @@ export default {
     
 }
 
+div {
+    font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+    color: white;
+}
+
+.stats{
+  width: 100vw;
+  margin: 10px;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats table {
+  text-align: left;
+}
+
+.stats table td {
+  padding-right: 10px;
+  border: white 1px solid;
+}
 
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div class='recordDetails'>
     <div class="recordImage">
-      <img v-bind:src="details.coverImg" />
-      <h1>{{details.artists[0].name}}</h1>
-      <h2>{{details.title}}</h2>
+        <img v-bind:src="details.coverImg" />
+        <h1 v-for="artist in details.artists" v-bind:key="artist.id">
+          {{ artist.name }}
+        </h1>
+        <h2>{{details.title}}</h2>
     </div>
     <div class="text">
         <div class="collection-form">
@@ -14,6 +16,7 @@
             <button type=submit v-on:click.prevent="saveToCollection()">Add to Collection</button>
         </div>
         <hr/>
+
         <div class="tracks">
             <h2>Tracks:</h2>
             <div v-for="track in details.tracklist" v-bind:key="track.position">

@@ -191,6 +191,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
 }
 .library {
   display: flex;
