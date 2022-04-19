@@ -81,6 +81,10 @@ export default {
 <style scoped>
 #title{
     text-align: center;
+    color: honeydew;
+    background-color: black;
+    display: ;
+    
 }
 
 div {
