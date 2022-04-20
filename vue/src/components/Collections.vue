@@ -1,5 +1,19 @@
 <template>
   <div class="allCollection">
+    <div class="addACollection">
+
+      <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
+      <input 
+          type="checkbox" 
+          id="isPublic" 
+          name="isPublic"
+          v-model="isPublic"     
+        />
+        <label for="isPublic" > Make Collection Public? </label>
+      <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
+
+    </div>
+
       <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
      
         <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
@@ -17,6 +31,8 @@ export default {
             collections: [
          
             ],
+            collectionName: '',
+            isPublic: false
             
             
             
@@ -32,6 +48,18 @@ export default {
     })
   },
 methods: {
+  createCollection(collectionName, isPublic) {
+     /* this.$store.commit("SAVE_TO_COLLECTION", collectionName, isPublic); */
+      collectionService.addCollection(collectionName, isPublic)
+      .then((response) => {
+        if (response.status === 200) {
+          this.collectionName = '';
+          this.isPublic = false;
+          location.reload();
+        }
+      });        
+    },
+
   deleteCollection(collection) {
       this.$confirm(
         'Are you sure you want to delete "' +
@@ -84,6 +112,8 @@ methods: {
   margin: 10px;
   text-align: center;
   padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .collectionLink {
@@ -96,4 +126,8 @@ methods: {
   text-decoration: underline;
 }
 
+.addACollection{
+  display: flex;
+  flex-direction: column;
+}
 </style>

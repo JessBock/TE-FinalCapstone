@@ -8,7 +8,7 @@ import java.security.Principal;
 import java.util.List;
 
 public interface CollectionDao {
-    public void addCollection(String collectionName, Principal principal);
+    public void addCollection(String collectionName, boolean isShare, Principal principal);
 
     public List<Collection> getCollections(User user);
 
