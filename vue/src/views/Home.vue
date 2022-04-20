@@ -1,19 +1,41 @@
 <template>
   <div class="home">
 
+    <div class="burger-casing">
+      <Burger></Burger>
+      <Sidebar>
+        <div class="stats">
+            <h3>Library Stats: </h3>
+            <h3>{{libraryCount}} Total Records</h3>
 
-     <!-- <div class="stats-sidebar" id='mySidebar'>
-        
-        <button v-b-toggle.sidebar-right>Toggle Sidebar</button>
-        
-        
 
-      </div>-->
+              <table class="genre-table">
+                <tr>
+                  <th>Genre Name</th>
+                  <th>Count</th>
+                </tr>
+                <tr v-for="stat in genreStats" v-bind:key="stat.name">
+                  <td>{{stat.name}}</td>
+                  <td class="number-count">{{stat.count}}</td>
+                </tr>
+              </table>
+
+              <table class="artist-table">
+                <tr>
+                  <th>Artist Name</th>
+                  <th>Count</th>
+                </tr>
+                <tr v-for="stat in artistStats" v-bind:key="stat.name">
+                  <td>{{stat.name}}</td>
+                  <td class="number-count">{{stat.count}}</td>
+                </tr>
+              </table>
+        </div>
+      </Sidebar>
+    </div>
+
 
     <nav class="home_navigation">
-    <!--  
-      <button id="openNav" class="w3-button w3-teal w3-xlarge" v-on:click="w3_open()">&#9776;</button>
-      -->
       <h1>My Library |</h1>
       <h1>
         <router-link v-bind:to="{ name: 'view-collections' }"
@@ -21,51 +43,16 @@
         >
       </h1>
     </nav>
-    <input
-      type="text"
-      v-model="collectionName"
-      placeholder="Enter A Collection Name"
-    />
-    <button
-      id="addToCollection"
-      type="submit"
-      v-on:click.prevent="createCollection(collectionName)"
-    >
-      Create A New Collection
-    </button>
-    <Burger></Burger>
-    <Sidebar>
-    <div class="stats">
-        <h2>Library Stats: {{libraryCount}} Total</h2>
 
+    <div class="addACollection">
 
-          <table class="genre-table">
-            <tr>
-              <th>Genre Name</th>
-              <th>Count</th>
-            </tr>
-            <tr v-for="stat in genreStats" v-bind:key="stat.name">
-              <td>{{stat.name}}</td>
-              <td>{{stat.count}}</td>
-            </tr>
-          </table>
-
-          <table class="artist-table">
-            <tr>
-              <th>Artist Name</th>
-              <th>Count</th>
-            </tr>
-            <tr v-for="stat in artistStats" v-bind:key="stat.name">
-              <td>{{stat.name}}</td>
-              <td>{{stat.count}}</td>
-            </tr>
-          </table>
-
+      <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
+      <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName)" >Create A New Collection</button>
 
     </div>
-    </Sidebar>
-    <div class="library">
 
+
+    <div class="library">
       <div
         class="record"
         v-for="libraryRecord in $store.state.library"
@@ -88,7 +75,6 @@
           </button>
         </div>
       </div>
-
     </div>
   </div>
   
@@ -172,59 +158,57 @@ export default {
     goToTracks(id) {
       this.$router.push({name: 'library-record-details', params: {id: id}});
     },
-/*
-    //Hamburger Button Menu
-    w3_open() {
-      document.getElementById("main").style.marginLeft = "25%";
-      document.getElementById("mySidebar").style.width = "25%";
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("openNav").style.display = 'none';
-    },
-    w3_close() {
-      document.getElementById("main").style.marginLeft = "0%";
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("openNav").style.display = "inline-block";
-    }
-
-*/
   }
 };
 </script>
 <style scoped>
 .home {
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+  overflow-x:hidden;
+}
+.addACollection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
 }
 .library {
   display: flex;
   flex-wrap: wrap;  
 }
 h1 {
+  padding: 10px;
   color: white;
   background: black;
-  padding: 10px;
+  font-family: "limelight-regular", serif;
   border-radius: 5px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
 }
-.stats{
 
+.stats{
   margin: 10px;
-  background-color: black;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 }
+
+.stats h3 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
 .stats table {
   text-align: left;
+  margin-bottom: 15px;
 }
 
 .stats table td {
   padding-right: 10px;
   border: white 1px solid;
+}
+
+.number-count {
+  text-align: end;
 }
 
 .record {
@@ -288,9 +272,16 @@ h1 {
   margin-bottom: 15px;
 }
 
+.nav_container {
+  display: flex;
+  justify-content: center;
+}
+
 .home_navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .coverImage {
@@ -310,7 +301,9 @@ h1 {
   }
 }
 
-
-
+.burger-casing {
+  display: flex;
+  justify-content: flex-end;
+}
 
 </style>
