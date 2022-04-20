@@ -3,7 +3,7 @@
       <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
      
         <h1><router-link class="collectionLinks" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
-        <button class = "deleteBtn" v-on:click="deleteCollection(collection.collectionId)">Delete Collection</button>
+        <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
       </div>
   </div>
 </template>
@@ -32,15 +32,15 @@ export default {
     })
   },
 methods: {
-  deleteCollection(collectionId) {
-      /*console.log(this.collectionName + this.collections.collectionName + this.collections.collectionId.collectionName);*/
+  deleteCollection(collection) {
       this.$confirm(
-        "Are you sure you want to delete " +
-        "PLACEHOLDER" +
+        'Are you sure you want to delete "' +
+        collection.collectionName +
+        '"',
         "REMOVE COLLECTION",
         "warning")
       .then (() => {
-        collectionService.deleteCollection(collectionId)
+        collectionService.deleteCollection(collection.collectionId)
         .then(
           collectionService.getCollections()
           .then( response => {

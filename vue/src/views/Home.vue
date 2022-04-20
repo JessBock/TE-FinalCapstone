@@ -2,13 +2,13 @@
   <div class="home">
 
 
-      <div class="stats-sidebar" id='mySidebar'>
-        <!--
+     <!-- <div class="stats-sidebar" id='mySidebar'>
+        
         <button v-b-toggle.sidebar-right>Toggle Sidebar</button>
-        -->
+        
         
 
-      </div>
+      </div>-->
 
     <nav class="home_navigation">
     <!--  
@@ -33,7 +33,8 @@
     >
       Create A New Collection
     </button>
-
+    <Burger></Burger>
+    <Sidebar>
     <div class="stats">
         <h2>Library Stats: {{libraryCount}} Total</h2>
 
@@ -62,6 +63,7 @@
 
 
     </div>
+    </Sidebar>
     <div class="library">
 
       <div
@@ -95,9 +97,15 @@
 <script>
 import recordService from "@/services/RecordService.js";
 import collectionService from "@/services/CollectionService.js";
+import Burger from '../components/Burger.vue';
+import Sidebar from '../components/Sidebar.vue';
 
 export default {
   name: "home",
+  components: {
+    Burger,
+    Sidebar,
+  },
   data() {
     return {
       collectionName: "",
@@ -204,7 +212,7 @@ h1 {
     "frontage-condensed-outline", serif;
 }
 .stats{
-  width: 100vw;
+
   margin: 10px;
   background-color: black;
   align-items: center;

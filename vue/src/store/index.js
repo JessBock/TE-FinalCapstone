@@ -18,6 +18,7 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    isNavOpen: false,
     token: currentToken || '',
     user: currentUser || {},
     library: [],
@@ -83,6 +84,10 @@ export default new Vuex.Store({
 
     SET_PUBLIC_COLLECTIONS(state, collection) {
       state.publicCollection = collection;
+    },
+
+    TOGGLE_NAV(state) {
+        state.isNavOpen = !state.isNavOpen
     }
 }
 
