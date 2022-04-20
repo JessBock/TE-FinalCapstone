@@ -18,7 +18,7 @@
       <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
         <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
      
-        <h1><router-link class="collectionLinks" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
+        <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
         <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
       </div>
   </div>
@@ -112,22 +112,29 @@ animation: fadeOutAnimation ease 15s;
 .allCollection {
   display: flex;
   justify-content: center;
-  
+  font-family: 'limelight-regular', 'serif';
 }
 
 .eachCollection {
-  
+  background-color: rgba(0,0,0,.8);
   border-radius: 5px;
   max-width: 25vw;
   margin: 10px;
   text-align: center;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   background: url('../assets/Gramophone_Vinyl_LP_Record.png')
 }
 
-.collectionLinks {
-  color: white;
+.collectionLink {
+  color: honeydew;
+  text-decoration: none;
+}
+
+.collectionLink:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 
 .addACollection{

@@ -1,7 +1,7 @@
 <template>
   <div class="collectionMain">
-    <h4><router-link class ="returnMainCollections" v-bind:to="{name: 'view-collections'}">Return</router-link></h4>
     <h2 id="collectionName">{{collection.name.collectionName}}</h2>
+    <h4><router-link class ="returnMainCollections" v-bind:to="{name: 'view-collections'}">Return</router-link></h4>
     <div class="recordsInCollection">
       <div class="record" v-for="record in collection.records" v-bind:key="record.recordId" v-bind:collection="collection">
         <div class="background">
@@ -65,17 +65,22 @@ export default {
 
 <style scoped>
 .returnMainCollections {
-  color: white;
-  background-color: black;
+  color: honeydew;
+  text-decoration: none;
+  background-color: rgba(0,0,0,.8);
+}
+
+.returnMainCollections:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 #collectionName {
-  color: white;
-  background-color: black;
+  color: honeydew;
+  background-color: rgba(0,0,0,.8);
   border-radius: 10px;
   font-size: 40px;
-  padding: 4px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  padding: 5px;
+  margin: 10px;
 }
 
 .collectionMain {
@@ -83,6 +88,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: "limelight-regular", serif;
 }
 
 .recordsInCollection {

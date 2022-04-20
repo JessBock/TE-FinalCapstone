@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link class="home" v-bind:to="{ name: 'home' }">Home</router-link>
-      &nbsp;|&nbsp;
-      <!--<router-link v-bind:to="www.google.com">Search</router-link> |-->
-      <router-link class="user" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout </router-link>
-      &nbsp;|&nbsp;
-      <!--<router-link v-bind:to="{ name: 'logout' }" v-else>Login</router-link> -->
-      <router-link class="public-collections" v-bind:to="{ name: 'public-collections' }" > Browse Collections</router-link>
-      <search />
+      <div id="homeCollectionBundle">
+        <router-link class="home_route" v-bind:to="{ name: 'home' }">Home</router-link>  
+        &nbsp;|&nbsp;
+        <router-link class="public-collections" v-bind:to="{ name: 'public-collections' }" > Browse Collections</router-link>
+      </div>
+      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout </router-link>
+      <div class="searchContainer">
+        <search class="searchBar"/>
+      </div>
     </div>
     <router-view />
   </div>
@@ -28,41 +29,56 @@ export default {
 
 
 <style scoped>
-@font-face {
-  /*
-  font-family: 'vinyl-regular';
-  src: local('vinyl-regular'),
-  url('./assets/Vinyl-Regular.ttf') format("truetype");
-  */
 
-    
+
+
+@font-face {   
   font-family: 'limelight-regular';
   src: local('limelight-regular'),
   url('./assets/Limelight-Regular.ttf') format("truetype");
-  
-
-
-  /*
-  font-family: 'carosello-regular';
-  src: local('carosello-regular'),
-  url('./assets/Carosello-Regular.ttf') format("truetype");
-  */
-
-  /*
-  font-family: 'frontage-condensed-outline';
-  src: local('frontage-condensed-outline'),
-  url('./assets/FrontageCondensed-Outline.ttf') format("truetype");
-  */
 }
 
 
-.home, .user, .public-collections{
+.home_route, .logout, .public-collections{
   color: honeydew;
+  text-decoration: none;
+}
+
+.home_route:hover, .logout:hover, .public-collections:hover {
+  color: #CC5500;
+  text-decoration: underline;
+}
+
+
+
+.homeCollectionBundle {
+  grid-area: homeCollectionBundle;
+  
+}
+
+.logout {
+  grid-area: logout;
+  display: flex;
+  justify-content: end;
+}
+
+.searchBar {
+  grid-area: searchBar;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
 }
 
 #nav {
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: 
+    "homeCollectionBundle searchBar logout";
+  font-family: "limelight-regular", serif;
+  background-color: rgba(0,0,0,.5);
 }
 
 </style>

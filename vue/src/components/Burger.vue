@@ -32,6 +32,7 @@
 
     button {
         cursor: pointer;
+        margin-top: 5px;
     }
 
     /* remove blue outline */
@@ -63,6 +64,9 @@
         margin-top: -1px;
         transition: transform .6s cubic-bezier(.165,.84,.44,1),opacity .3s cubic-bezier(.165,.84,.44,1),background-color .6s cubic-bezier(.165,.84,.44,1);
     }
+    .burger-bar:hover {
+        background-color: #CC5500;
+    }
 
     .burger-bar--1 {
         -webkit-transform: translateY(-6px);
@@ -76,10 +80,12 @@
 
     .burger-button:hover .burger-bar--2 {
         transform: scaleX(1);
+        background-color: #CC5500;
     }
 
     .no-touchevents .burger-bar--2:hover {
         transform: scaleX(1);
+        background-color: #CC5500;
     }
 
     .burger-bar--3 {
