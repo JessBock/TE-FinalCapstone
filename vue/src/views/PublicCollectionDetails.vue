@@ -32,7 +32,7 @@ export default {
         .then( response => {
             this.records = response.data;
         });
-        this.collectionName = this.$store.state.collection.find(element => {
+        this.collectionName = this.$store.state.publicCollection.find(element => {
            return element.collectionId === this.$route.params.id
          });
 

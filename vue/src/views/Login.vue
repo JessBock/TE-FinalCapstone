@@ -63,7 +63,7 @@ export default {
     collectionService.getPublicCollections()
     .then( response => {
       self.collections = response.data;
-      this.$store.commit('SET_COLLECTION', response.data);
+      this.$store.commit('SET_PUBLIC_COLLECTIONS', response.data);
     });
   },
   methods: {

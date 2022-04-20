@@ -110,6 +110,7 @@ animation: fadeOutAnimation ease 15s;
 }
 
 .allCollection {
+  flex-wrap:wrap;
   display: flex;
   justify-content: center;
   font-family: 'limelight-regular', 'serif';
@@ -117,19 +118,21 @@ animation: fadeOutAnimation ease 15s;
 
 .eachCollection {
   background-color: rgba(0,0,0,.8);
-  border-radius: 5px;
+  border-radius: 15px;
   max-width: 25vw;
   margin: 10px;
   text-align: center;
   padding: 5px;
   display: flex;
   flex-direction: column;
-  background: url('../assets/Gramophone_Vinyl_LP_Record.png')
+ /* background: url('../assets/Gramophone_Vinyl_LP_Record.png') */
+
 }
 
 .collectionLink {
   color: honeydew;
   text-decoration: none;
+  
 }
 
 .collectionLink:hover {
