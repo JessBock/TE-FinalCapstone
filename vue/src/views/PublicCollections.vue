@@ -31,7 +31,7 @@
     </div>
       <h1 id='title'>Our Public Collections!</h1>
       <div v-for='collection in publicCollections' v-bind:key='collection.collectionId'>
-        <h2><router-link v-bind:to="{name: 'public-collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h2>
+        <h2><router-link class="collectionLink" v-bind:to="{name: 'public-collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h2>
       </div>
   </div>
 </template>
@@ -133,6 +133,16 @@ div {
 
 .number-count {
   text-align: end;
+}
+
+.collectionLink {
+  text-decoration: none;
+  color: honeydew;
+}
+
+.collectionLink:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 
 </style>

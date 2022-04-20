@@ -38,7 +38,7 @@
     <nav class="home_navigation">
       <h1>My Library |</h1>
       <h1>
-        <router-link v-bind:to="{ name: 'view-collections' }"
+        <router-link class="collectionLink" v-bind:to="{ name: 'view-collections' }"
           >My Collections</router-link
         >
       </h1>
@@ -59,11 +59,11 @@
         v-bind:key="libraryRecord.id"
       >
         <div class="background">
-          <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
+          <img src="../assets/Gramophone_Vinyl_LP_Record.png" v-on:click="goToTracks(libraryRecord.recordId)"/>
         </div>
 
         <div class="album-art">
-          <img class="coverImage" v-bind:src="libraryRecord.coverImg"  v-on:click="goToTracks(libraryRecord.recordId)" />
+          <img class="coverImage" v-bind:src="libraryRecord.coverImg" v-on:click="goToTracks(libraryRecord.recordId)"/>
           <h2>{{ libraryRecord.title }}</h2>
           <h2 v-for="artist in libraryRecord.artists" v-bind:key="artist.name">
             {{ artist.name }}
@@ -180,7 +180,7 @@ export default {
 h1 {
   padding: 10px;
   color: white;
-  background: black;
+  background-color: rgba(0,0,0,.8);
   font-family: "limelight-regular", serif;
   border-radius: 5px;
 }
@@ -225,14 +225,8 @@ h1 {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  font-family: "limelight-regular", serif;
   font-size: 10px;
-  
-  cursor: url('../assets/record_needle3.png'), auto;
-  /*cursor: pointer;*/
-  
-  
 }
 
 .album-art {
@@ -240,12 +234,12 @@ h1 {
 }
 .background {
   position:absolute;
- display: flex;
- flex-direction: column;
- height: 100%;
- width: 100%;
- align-items: center;
- justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
  
 }
 
@@ -258,8 +252,9 @@ h1 {
  z-index: 0;
 }
 
-.background:hover {
+.background img:hover {
  animation: rotation 8s infinite linear;
+ cursor: url('../assets/record_needle3.png'), auto;
 }
 
 .deleteBtn {
@@ -304,6 +299,16 @@ h1 {
 .burger-casing {
   display: flex;
   justify-content: flex-end;
+}
+
+.collectionLink {
+  color: white;
+  text-decoration: none;
+}
+
+.collectionLink:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 
 </style>

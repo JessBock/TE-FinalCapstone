@@ -2,7 +2,7 @@
   <div class="allCollection">
       <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
      
-        <h1><router-link class="collectionLinks" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
+        <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
         <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
       </div>
   </div>
@@ -74,18 +74,26 @@ methods: {
 .allCollection {
   display: flex;
   justify-content: center;
+  font-family: 'limelight-regular', 'serif';
 }
 
 .eachCollection {
-  background-color: black;
+  background-color: rgba(0,0,0,.8);
   border-radius: 5px;
   max-width: 25vw;
   margin: 10px;
   text-align: center;
+  padding: 5px;
 }
 
-.collectionLinks {
-  color: white;
+.collectionLink {
+  color: honeydew;
+  text-decoration: none;
+}
+
+.collectionLink:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 
 </style>
