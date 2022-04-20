@@ -1,27 +1,33 @@
 <template>
-  <div>
-      <div class="stats">
-        <h2>Database Stats: {{recordCount}} Total</h2>
-          <table class="genre-table">
-            <tr>
-              <th>Genre Name</th>
-              <th>Count</th>
-            </tr>
-            <tr v-for="stat in genreStats" v-bind:key="stat.name">
-              <td>{{stat.name}}</td>
-              <td>{{stat.count}}</td>
-            </tr>
-          </table>
-          <table class="artist-table">
-            <tr>
-              <th>Artist Name</th>
-              <th>Count</th>
-            </tr>
-            <tr v-for="stat in artistStats" v-bind:key="stat.name">
-              <td>{{stat.name}}</td>
-              <td>{{stat.count}}</td>
-            </tr>
-          </table>
+  <div class="main">
+      <div class="burger-casing">
+        <Burger></Burger>
+        <Sidebar>
+        <div class="stats">
+          <h3>Database Stats: </h3>
+          <h3>{{recordCount}} Total Records</h3>
+            <table class="genre-table">
+              <tr>
+                <th>Genre Name</th>
+                <th>Count</th>
+              </tr>
+              <tr v-for="stat in genreStats" v-bind:key="stat.name">
+                <td>{{stat.name}}</td>
+                <td class="number-count">{{stat.count}}</td>
+              </tr>
+            </table>
+            <table class="artist-table">
+              <tr>
+                <th>Artist Name</th>
+                <th>Count</th>
+              </tr>
+              <tr v-for="stat in artistStats" v-bind:key="stat.name">
+                <td>{{stat.name}}</td>
+                <td class="number-count">{{stat.count}}</td>
+              </tr>
+            </table>
+        </div>
+      </Sidebar>
     </div>
       <h1 id='title'>Our Public Collections!</h1>
       <div v-for='collection in publicCollections' v-bind:key='collection.collectionId'>
@@ -33,7 +39,13 @@
 <script>
 import collectionService from '@/services/CollectionService.js'
 import recordService from '@/services/RecordService.js'
+import Burger from '../components/Burger.vue';
+import Sidebar from '../components/Sidebar.vue';
 export default {
+    components: {
+      Burger,
+      Sidebar,
+    },
     data() {
         return {
             publicCollections: [],           
@@ -74,6 +86,11 @@ export default {
 </script>
 
 <style scoped>
+
+.main {
+  overflow-x:hidden;
+}
+
 #title{
     text-align: center;
     color: honeydew;
@@ -89,20 +106,33 @@ div {
 }
 
 .stats{
-  width: 100vw;
   margin: 10px;
-  background-color: black;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 }
 
+.stats h3 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 .stats table {
   text-align: left;
+  margin-bottom: 15px;
 }
 
 .stats table td {
   padding-right: 10px;
   border: white 1px solid;
+}
+
+.burger-casing {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.number-count {
+  text-align: end;
 }
 
 </style>
