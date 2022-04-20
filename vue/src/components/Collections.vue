@@ -1,6 +1,6 @@
 <template>
-  <div class="allCollection">
-    <div class="addACollection">
+<div>
+  <div class="addACollection">
 
       <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
       <input 
@@ -11,14 +11,17 @@
         />
         <label for="isPublic" > Make Collection Public? </label>
       <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
-
+    
     </div>
+  <div class="allCollection">
 
       <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
+        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
      
         <h1><router-link class="collectionLinks" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
         <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
       </div>
+  </div>
   </div>
 </template>
 
@@ -99,20 +102,28 @@ methods: {
 
 <style scoped>
 
-.allCollection {
-  display: flex;
-  justify-content: center;
+.collectionLinks {
+animation: fadeOutAnimation ease 15s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 
 }
 
+.allCollection {
+  display: flex;
+  justify-content: center;
+  
+}
+
 .eachCollection {
-  background-color: black;
+  
   border-radius: 5px;
   max-width: 25vw;
   margin: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  background: url('../assets/Gramophone_Vinyl_LP_Record.png')
 }
 
 .collectionLinks {
@@ -122,5 +133,22 @@ methods: {
 .addACollection{
   display: flex;
   flex-direction: column;
+  background-color: black;
+  color: white;
+  max-width: 25vw;
+  margin: auto;
+}
+
+.eachCollection img {
+
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
 }
 </style>
