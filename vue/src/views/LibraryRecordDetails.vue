@@ -66,9 +66,6 @@ export default {
     methods: {
         saveToCollection() {
             collectionService.addRecordToCollection(this.details.recordId, this.collectionId);
-            
-            
-            
             this.$confirm("You want to add '" +
             this.details.title + 
             "' to your collection?",

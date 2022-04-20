@@ -237,7 +237,8 @@ h1 {
     "frontage-condensed-outline", serif;
   font-size: 10px;
   
-  cursor: pointer;
+  cursor: url('../assets/record_needle3.png'), auto;
+  /*cursor: pointer;*/
   
   
 }

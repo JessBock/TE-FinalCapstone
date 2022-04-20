@@ -41,11 +41,8 @@
         {{ track.title }} : {{ track.duration }} - {{ track.position }}
         </div>
       </div>
-      <button
-        type="submit"
-        v-on:click="saveToLibrary(newRecord)"
-      >Add To Library
-      </button>
+                                                                  <!-- only show button if user logged in-->
+      <button type="submit" v-on:click="saveToLibrary(newRecord)" v-if="$store.state.token != ''">Add To Library</button>
       </div>
     </div>
   </div>

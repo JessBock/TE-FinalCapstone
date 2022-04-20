@@ -33,15 +33,23 @@ export default {
   },
 methods: {
   deleteCollection(collectionId) {
-    collectionService.deleteCollection(collectionId)
-    .then(
-        collectionService.getCollections()
-        .then( response => {
-          this.collections = response.data;
-          },
-          location.reload()
+      /*console.log(this.collectionName + this.collections.collectionName + this.collections.collectionId.collectionName);*/
+      this.$confirm(
+        "Are you sure you want to delete " +
+        "PLACEHOLDER" +
+        "REMOVE COLLECTION",
+        "warning")
+      .then (() => {
+        collectionService.deleteCollection(collectionId)
+        .then(
+          collectionService.getCollections()
+          .then( response => {
+            this.collections = response.data;
+            },
+            location.reload()
+          )
         )
-      )
+      });
     },
 
     deleteCollectionFromRecord(collectionId, recordId){
