@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default {
-    addCollection(collectionName) {
+    addCollection(collectionName, isPublic) {
        
-        return axios.post('/collections/' + collectionName);
+        return axios.post('/collections/' + collectionName + '/' + isPublic);
     
     },
 

@@ -44,12 +44,12 @@
       </h1>
     </nav>
 
-    <div class="addACollection">
+    <!--<div class="addACollection">
 
       <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
       <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName)" >Create A New Collection</button>
 
-    </div>
+    </div>-->
 
 
     <div class="library">
@@ -94,7 +94,7 @@ export default {
   },
   data() {
     return {
-      collectionName: "",
+
       genreStats: {},
       artistStats: {},
       libraryCount: 0
@@ -145,7 +145,8 @@ export default {
         location.reload();
       })
     },
-    createCollection(collectionName) {
+
+    /*createCollection(collectionName) {
       this.$store.commit("SAVE_TO_COLLECTION", collectionName);
       collectionService.addCollection(collectionName)
       .then((response) => {
@@ -153,7 +154,7 @@ export default {
         this.$router.push({ name: "view-collections" });
         }
       });        
-    },
+    }, */
 
     goToTracks(id) {
       this.$router.push({name: 'library-record-details', params: {id: id}});

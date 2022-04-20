@@ -22,9 +22,9 @@ public class CollectionController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path= "/collections/{collectionName}", method = RequestMethod.POST)
-    public void saveCollection(@PathVariable String collectionName, Principal principal) {
-        collectionDao.addCollection(collectionName, principal);
+    @RequestMapping(path= "/collections/{collectionName}/{isShare}", method = RequestMethod.POST)
+    public void saveCollection(@PathVariable String collectionName, @PathVariable boolean isShare, Principal principal) {
+        collectionDao.addCollection(collectionName, isShare, principal);
     }
 
     @RequestMapping(path= "/collections", method = RequestMethod.GET)

@@ -25,7 +25,7 @@ public class JdbcCollectionDao implements CollectionDao {
 
 
     @Override
-    public void addCollection(String collectionName, Principal principal) {
+    public void addCollection(String collectionName, boolean isShare, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
         Collection collection = new Collection();
 
@@ -33,7 +33,7 @@ public class JdbcCollectionDao implements CollectionDao {
                 "VALUES (?, ?, ?, ?) RETURNING collections_id";
 
         Long collectionId = jdbcTemplate.queryForObject(addingCollection, Long.class, collectionName,
-                collection.isShare(), collection.getCollectionComments(), userId);
+                isShare, collection.getCollectionComments(), userId);
 
 
     }
