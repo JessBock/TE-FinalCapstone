@@ -303,7 +303,7 @@ h1 {
 }
 
 .collectionLink {
-  color: white;
+  color: honeydew;
   text-decoration: none;
 }
 

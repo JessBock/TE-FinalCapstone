@@ -47,8 +47,8 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+      <router-link class="login-query" :to="{ name: 'login' }">Have an account?</router-link>
     </form>
-    <router-link class="login-query" :to="{ name: 'login' }">Have an account?</router-link>
   </div>
 </template>
 
@@ -110,25 +110,35 @@ export default {
 <style scoped>
 
 .form-register {
-    padding-top: 50px;
-    width: 20vw;
+    padding-top: 153px;
+    width: 600px;
+    height: 600px;
     background-image: url('../assets/logo.png');
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
-    font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
+    font-family: "limelight-regular", serif;
 }
 
 
 .login-query {
-  color: whitesmoke;
+  margin-top: 30px;
+  color: honeydew;
   text-align: center;
   padding: 10px;
+  font-family: "limelight-regular", serif;
+  text-decoration: none;
 }
+
+.login-query:hover {
+  color: #CC5500;
+  text-decoration: underline;
+}
+
 body, h1 {
 color: honeydew;
 text-align: center;
-font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
+font-family: "limelight-regular", serif;
 }
 
 #register {

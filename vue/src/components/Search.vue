@@ -1,6 +1,6 @@
 <template>
   <form v-on:submit.prevent="searchWebsite()">
-    <input type="text" v-model="searchTerm" />
+    <input class="searchButton" type="text" v-model="searchTerm" style="padding: 8px;" />
     <button>Search</button>
   </form>
 </template>
@@ -56,4 +56,5 @@ export default {
 </script>
 
 <style scope>
+
 </style>

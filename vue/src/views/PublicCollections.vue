@@ -4,7 +4,7 @@
         <Burger></Burger>
         <Sidebar>
         <div class="stats">
-          <h3>Database Stats: </h3>
+          <h3 class="databaseTitle">Database Stats: </h3>
           <h3>{{recordCount}} Total Records</h3>
             <table class="genre-table">
               <tr>
@@ -100,9 +100,8 @@ export default {
 }
 
 div {
-    font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
-    color: white;
+    font-family: "limelight-regular", serif;
+    color: honeydew;
 }
 
 .stats{
@@ -122,8 +121,16 @@ div {
 }
 
 .stats table td {
-  padding-right: 10px;
-  border: white 1px solid;
+  padding: 8px;
+  border: honeydew 1px solid;
+}
+
+.stats table th {
+  color: #CC5500;
+}
+
+.databaseTitle {
+  color: #CC5500;
 }
 
 .burger-casing {

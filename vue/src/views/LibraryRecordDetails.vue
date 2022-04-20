@@ -97,7 +97,7 @@ hr {
     display: flex;
     flex-direction: column;
     background-color: black;
-    color: white;
+    color: honeydew;
     margin: 1vw;
     flex-grow: 2;
     padding: 20px;
@@ -155,7 +155,7 @@ textarea {
     background-image: url("../assets/Gramophone_Vinyl_LP_Record.png");
     background-size: 600px;
     background-position: center;
-    color: white;
+    color: honeydew;
     z-index: 0;
 }
 .recordDetails img {

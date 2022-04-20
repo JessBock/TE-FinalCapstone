@@ -1,27 +1,27 @@
 <template>
-<div>
-  <div class="addACollection">
+  <div class="collectionPage">
+    <div class="addACollection">
 
-      <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
-      <input 
-          type="checkbox" 
-          id="isPublic" 
-          name="isPublic"
-          v-model="isPublic"     
-        />
-        <label for="isPublic" > Make Collection Public? </label>
-      <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
-    
-    </div>
-  <div class="allCollection">
-
-      <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
-        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
-     
-        <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
-        <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
+        <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
+        <input 
+            type="checkbox" 
+            id="isPublic" 
+            name="isPublic"
+            v-model="isPublic"     
+          />
+          <label for="isPublic" > Make Collection Public? </label>
+        <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
+      
       </div>
-  </div>
+    <div class="allCollection">
+
+        <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
+          <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
+      
+          <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
+          <button class = "deleteBtn" v-on:click="deleteCollection(collection)">Delete Collection</button>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -144,13 +144,13 @@ animation: fadeOutAnimation ease 15s;
   display: flex;
   flex-direction: column;
   background-color: black;
-  color: white;
+  color: honeydew;
   max-width: 25vw;
   margin: auto;
 }
 
-.eachCollection img {
-
+.collectionPage {
+  overflow-x: hidden;
 }
 
 @keyframes fadeOutAnimation {

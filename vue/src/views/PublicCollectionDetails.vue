@@ -44,16 +44,12 @@ export default {
 <style>
 
 .returnPublicCollections {
-  color: white;
+  color: honeydew;
   background-color: black;
-  /*display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 } 
 
 #collectionName {
-  color: white;
+  color: honeydew;
   background-color: black;
   border-radius: 10px;
   font-size: 40px;
@@ -78,7 +74,7 @@ export default {
  position: relative;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: honeydew;
   margin: 1vw;
   padding: 20px;
   width: 500px;

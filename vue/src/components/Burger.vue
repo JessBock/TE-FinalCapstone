@@ -54,7 +54,7 @@
     }
 
     .burger-bar {
-        background-color: white;
+        background-color: honeydew;
         position: absolute;
         top: 50%;
         right: 6px;
@@ -97,7 +97,7 @@
     }
 
     #burger.active .burger-bar {
-        background-color: #fff;
+        background-color: honeydew;
     }
 
     #burger.active .burger-bar--1 {

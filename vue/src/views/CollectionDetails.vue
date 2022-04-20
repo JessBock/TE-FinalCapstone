@@ -100,7 +100,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: honeydew;
   margin: 1vw;
   padding: 20px;
   width: 500px;
@@ -110,10 +110,7 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  /*background-position: center;
- background-size: 600px; */
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  font-family: "limelight-regular", serif;
   font-size: 20px;
 }
 
@@ -129,7 +126,6 @@ export default {
   width: 100%;
   align-items: center;
   justify-content: center;
- 
 }
 
 .background img {

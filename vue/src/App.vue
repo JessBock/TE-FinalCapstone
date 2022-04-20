@@ -28,7 +28,7 @@ export default {
 
 
 
-<style scoped>
+<style >
 
 
 
@@ -59,7 +59,7 @@ export default {
 .logout {
   grid-area: logout;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .searchBar {
@@ -79,6 +79,25 @@ export default {
     "homeCollectionBundle searchBar logout";
   font-family: "limelight-regular", serif;
   background-color: rgba(0,0,0,.5);
+  align-items: center;
+}
+
+button {
+  font-family: 'limelight-regular', serif;
+  background: honeydew;
+  color: black;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+#app {
+  font-family: 'limelight-regular', serif;
+}
+
+input {
+  background-color:honeydew;
+  border-radius: 5px;
 }
 
 </style>
