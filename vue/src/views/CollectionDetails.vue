@@ -4,21 +4,15 @@
     <h2 id="collectionName">{{collection.name.collectionName}}</h2>
     <div class="recordsInCollection">
       <div class="record" v-for="record in collection.records" v-bind:key="record.recordId" v-bind:collection="collection">
-
         <div class="background">
           <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
         </div>
-
         <div class="album-art">
           <img v-bind:src="record.coverImg" id="singleArt" />
           <h2>{{record.title}}</h2>
-        <!--<h2>{{record.artists[0]}}</h2>
-        <h3>{{record.year}}</h3>
-        <h3>{{record.genre}}</h3>-->
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -90,6 +84,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .recordsInCollection {
   display: flex;
   flex-wrap: wrap;
@@ -114,9 +109,6 @@ export default {
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
   font-size: 20px;
-  
-  
-  
 }
 
 .album-art {
@@ -134,7 +126,7 @@ export default {
  
 }
 
-.background img{
+.background img {
  
  position:absolute;
  background-position: center;

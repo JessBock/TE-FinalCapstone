@@ -42,6 +42,7 @@
 <script>
 import RecordAlbum from '../components/RecordAlbum.vue';
 import authService from "../services/AuthService";
+import collectionService from '../services/CollectionService';
 
 export default {
   name: "login",
@@ -52,8 +53,18 @@ export default {
         username: "",
         password: ""
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      collections:[]
     };
+  },
+
+  created() {
+    const self = this;
+    collectionService.getCollections()
+    .then( response => {
+      self.collections = response.data;
+      this.$store.commit('SET_COLLECTION', response.data);
+    });
   },
   methods: {
     login() {

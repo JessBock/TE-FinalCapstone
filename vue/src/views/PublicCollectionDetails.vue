@@ -1,15 +1,17 @@
 <template>
   <div class="collectionHome">
     <h4><router-link class ="returnPublicCollections" v-bind:to="{name: 'public-collections'}">Return</router-link></h4>
-    <h1 id="collectionName">{{collectionName.collectionName}}</h1>
-    <div v-for="record in records" v-bind:key="record.recordId">
-        <div class="background">
+    <h2 id="collectionName">{{collectionName.collectionName}}</h2>
+    <div class="recordsInCollection">
+    <div class="record" v-for="record in records" v-bind:key="record.recordId">
+            <div class="background">
           <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
-        </div>
+          </div>
         <div class="albumArt">
-            <img  v-bind:src="record.coverImg"/>
+            <img  v-bind:src="record.coverImg" id="singleArt"/>
             <h2>{{record.title}}</h2>
         </div>
+      </div>
     </div> 
   </div>
 </template>
@@ -41,7 +43,38 @@ export default {
 
 <style>
 
+.returnPublicCollections {
+  color: white;
+  background-color: black;
+  /*display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+} 
+
+#collectionName {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  font-size: 40px;
+  padding: 4px;
+  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
+    "frontage-condensed-outline", serif;
+}
+
 .collectionHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recordsInCollection {
+ display: flex;
+  flex-wrap: wrap;
+}
+
+.record {
  position: relative;
   display: flex;
   flex-direction: column;
@@ -55,28 +88,19 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
+  /*background-position: center;
+ background-size: 600px; */
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
-  font-size: 10px;
-  
-  cursor: pointer;
-}
-.returnPublicCollections {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-size: 20px;
+
 }
 
 .albumArt {
-    z-index: 0;
-    
+    z-index: 1;   
 }
-.albumArt img {
-    width: 250px;
-    height: auto;
-}
-.background{
+
+.background {
     position:absolute;
     display: flex;
     flex-direction: column;
@@ -89,28 +113,29 @@ export default {
 
 .background img{
  
-  display: flex;
-    flex-direction: column;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
-    background-image: url("../assets/Gramophone_Vinyl_LP_Record.png");
-    background-size: 600px;
-    background-position: center;
-    color: white;
-    z-index: 0;
+ position:absolute;
+ background-position: center;
+ height: 100%;
+ width: 100%;
+ z-index: 0;
 }
 
-#collectionName {
-  color: honeydew;
-  background-color: black;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 40px;
-  padding: 4px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+#singleArt {
+    width: 250px;
+    height: auto;
+    border-radius: 0 !important;
+}
+
+.background:hover {
+    animation: rotation 8s infinite linear;
+}
+
+    @keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 </style>
