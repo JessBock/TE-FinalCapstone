@@ -60,7 +60,7 @@ export default {
 
   created() {
     const self = this;
-    collectionService.getCollections()
+    collectionService.getPublicCollections()
     .then( response => {
       self.collections = response.data;
       this.$store.commit('SET_COLLECTION', response.data);

@@ -9,7 +9,7 @@ public class Collection {
     private long count;
     private boolean share = false;
     private String collectionComments = "";
-    private long userId;
+    private long userId = 0L;
     private RecordDTO recordToAdd;
 
     public Collection(String collectionName, RecordDTO recordToAdd) {
