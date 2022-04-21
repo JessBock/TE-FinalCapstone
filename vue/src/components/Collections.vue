@@ -17,7 +17,7 @@
       </div>
     <div class="allCollection">
 
-        <div class="eachCollection" v-for="collection in collections" v-bind:key="collection.collectionId">
+        <div class="eachCollection" v-for="collection in displayCollections" v-bind:key="collection.collectionId">
           <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
       
           <h1><router-link class="collectionLink" v-bind:to="{name: 'collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h1>
@@ -30,59 +30,55 @@
 <script>
 import collectionService from '@/services/CollectionService.js';
 export default {
-    name: 'collections',
-    data() {
-        return {
-            collections: [
-         
-            ],
-            collectionName: '',
-            isPublic: false
+  name: 'collections',
+  data() {
+    return {
+      collections: [],
+      collectionName: '',
+      isPublic: false
             
             
             
         }
     },
-   
+  computed: {
+    displayCollections() {
+      let collections = this.$store.state.collections;
+      return collections;
+    }
+  },
   created() {
     const self = this;
     collectionService.getCollections()
     .then( response => {
       self.collections = response.data;
-      this.$store.commit('SET_COLLECTION', response.data);
+      return this.$store.commit('SET_COLLECTION', response.data);
     })
   },
 methods: {
   createCollection(collectionName, isPublic) {
+    this.collectionName = '';
      /* this.$store.commit("SAVE_TO_COLLECTION", collectionName, isPublic); */
-      collectionService.addCollection(collectionName, isPublic)
-      .then((response) => {
-        if (response.status === 200) {
-          this.collectionName = '';
-          this.isPublic = false;
-          location.reload();
-        }
-      });        
-    },
+    collectionService.addCollection(collectionName, isPublic)
+    .then(() => {
+        collectionService.getCollections()
+        .then( response =>
+          {return this.$store.commit('SET_COLLECTION', response.data)})
+    })  
+  },
 
   deleteCollection(collection) {
-      this.$confirm(
-        'Are you sure you want to delete "' +
-        collection.collectionName +
-        '"',
-        "REMOVE COLLECTION",
-        "warning")
-      .then (() => {
-        collectionService.deleteCollection(collection.collectionId)
-        .then(
-          collectionService.getCollections()
-          .then( response => {
-            this.collections = response.data;
-            },
-            location.reload()
-          )
-        )
-      });
+    this.$confirm(
+      'Are you sure you want to delete "' +
+      collection.collectionName +
+      '"',
+      "REMOVE COLLECTION",
+      "warning")
+    .then (() => {
+      collectionService.deleteCollection(collection.collectionId),
+      this.$store.commit('DELETE_FROM_COLLECTION', collection.collectionId)
+    })
+
     },
 
     deleteCollectionFromRecord(collectionId, recordId){
@@ -96,8 +92,9 @@ methods: {
         )
       )
     },
-    }
+  
   }
+}
 
 
 </script>

@@ -166,7 +166,7 @@ export default {
 .home {
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 .addACollection {
@@ -179,6 +179,7 @@ export default {
 .library {
   display: flex;
   flex-wrap: wrap;  
+  margin: 15px;
 }
 
 h1 {

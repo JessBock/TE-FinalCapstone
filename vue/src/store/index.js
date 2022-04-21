@@ -25,12 +25,7 @@ export default new Vuex.Store({
     results: [],
     recordDetails: [],
     record: {},
-    collection: [
-      {
-      collectionName: '',
-      records: []
-    }
-  ],
+    collections: [],
     publicCollection: []
   },
   mutations: {
@@ -63,7 +58,12 @@ export default new Vuex.Store({
     },
 
     SAVE_TO_COLLECTION(state, collection) {
-      state.collection.push(collection);
+      state.collections.push(collection);
+    },
+
+    DELETE_FROM_COLLECTION(state, collectionId) {
+      let index = state.collections.findIndex(album => album.collectionId === collectionId)
+      state.collections.splice(index, 1);
     },
 
     SET_LIBRARY(state, payload) {
@@ -83,7 +83,7 @@ export default new Vuex.Store({
     },
 
     SET_COLLECTION(state, collection) {
-      state.collection = collection;
+      state.collections = collection;
     },
 
     SET_PUBLIC_COLLECTIONS(state, collection) {
