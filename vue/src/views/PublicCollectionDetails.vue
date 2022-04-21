@@ -45,17 +45,23 @@ export default {
 
 .returnPublicCollections {
   color: honeydew;
-  background-color: black;
-} 
+  text-decoration: none;
+  background-color: rgba(0,0,0,.8);
+  border-radius: 5px;
+}
+
+.returnPublicCollections:hover {
+  color: #CC5500;
+  text-decoration: underline;
+}
 
 #collectionName {
   color: honeydew;
-  background-color: black;
+  background-color: rgba(0,0,0,.8);
   border-radius: 10px;
   font-size: 40px;
   padding: 4px;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  font-family: "limelight-regular", serif;
 }
 
 .collectionHome {
@@ -66,7 +72,7 @@ export default {
 }
 
 .recordsInCollection {
- display: flex;
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -84,31 +90,25 @@ export default {
   text-align: center;
   border-radius: 50%;
   margin: 5px;
-  /*background-position: center;
- background-size: 600px; */
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
-    "frontage-condensed-outline", serif;
+  font-family: "limelight-regular", serif;
   font-size: 20px;
-
 }
 
 .albumArt {
-    z-index: 1;   
+  z-index: 1;   
 }
 
 .background {
-    position:absolute;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-
+  position:absolute;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .background img{
- 
  position:absolute;
  background-position: center;
  height: 100%;
@@ -117,16 +117,16 @@ export default {
 }
 
 #singleArt {
-    width: 250px;
-    height: auto;
-    border-radius: 0 !important;
+  width: 250px;
+  height: auto;
+  border-radius: 0 !important;
 }
 
 .background:hover {
-    animation: rotation 8s infinite linear;
+  animation: rotation 8s infinite linear;
 }
 
-    @keyframes rotation {
+@keyframes rotation {
   from {
     transform: rotate(0deg);
   }
