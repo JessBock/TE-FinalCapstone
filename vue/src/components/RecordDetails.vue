@@ -151,7 +151,7 @@ div {
   position: relative;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: honeydew;
   margin: 1vw;
   padding: 20px;
   width: 500px;
