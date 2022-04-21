@@ -171,5 +171,10 @@ form {
 }
 .premium_checkbox {
   padding: 5px;
+  color: honeydew;
+}
+
+input {
+  background-color: honeydew;
 }
 </style>

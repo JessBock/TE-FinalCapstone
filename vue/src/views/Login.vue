@@ -94,10 +94,15 @@ export default {
   display: grid;
   margin-top: 35vh;
   margin-right: 5vw;
-  justify-items: end;
+  margin-left: 82vw;
+  justify-items: center;
+  align-items: center;
   text-decoration-color: honeydew;
-  font-family: "vinyl-regular", "limelight-regular", "carosello-regular", "frontage-condensed-outline", serif;
-
+  font-family: "limelight-regular", serif;
+  background-color: rgba(0,0,0,.8);
+  padding: 5px;
+  border-radius: 15px;
+  
   
 }
 
@@ -135,6 +140,10 @@ form {
 .routerlink:hover {
   color: #CC5500;
   text-decoration: underline;
+}
+
+input {
+  background-color: honeydew;
 }
 
 </style>

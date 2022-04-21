@@ -41,6 +41,8 @@
         {{ track.title }} : {{ track.duration }} - {{ track.position }}
         </div>
       </div>
+      <br/>
+      <h4 class="return" v-on:click="returnToSearch">Return</h4>
                                                                   <!-- only show button if user logged in-->
       <button type="submit" v-on:click="saveToLibrary(newRecord)" v-if="$store.state.token != ''">Add To Library</button>
       </div>
@@ -123,6 +125,10 @@ export default {
           }
         });
     },
+    returnToSearch() {
+      this.newRecord = {},
+      this.$store.commit("UPDATE_RECORD_DETAILS", [])
+    }
   },
 };
 </script>
@@ -232,6 +238,16 @@ div {
 
 .tracks {
     flex-direction: column;
+}
+
+.return {
+  color: honeydew;
+  text-decoration: none;
+}
+
+.return:hover {
+  color: #CC5500;
+  text-decoration: underline;
 }
 
 </style>
