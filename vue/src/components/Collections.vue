@@ -150,6 +150,7 @@ animation: fadeOutAnimation ease 15s;
   margin: auto;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 5px;
 }
 
 .collectionPage {
