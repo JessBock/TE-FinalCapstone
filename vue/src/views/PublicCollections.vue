@@ -30,8 +30,12 @@
       </Sidebar>
     </div>
       <h1 id='title'>Our Public Collections!</h1>
-      <div v-for='collection in publicCollections' v-bind:key='collection.collectionId'>
+      <div class="allCollection">
+
+      <div class="eachPublicCollection" v-for='collection in publicCollections' v-bind:key='collection.collectionId'>
+        <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
         <h2><router-link class="collectionLink" v-bind:to="{name: 'public-collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h2>
+      </div>
       </div>
   </div>
 </template>
@@ -150,6 +154,25 @@ div {
 .collectionLink:hover {
   color: #CC5500;
   text-decoration: underline;
+}
+
+.eachPublicCollection {
+  background-color: rgba(0,0,0,.8);
+  border-radius: 15px;
+  max-width: 25vw;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.allCollection {
+  flex-wrap:wrap;
+  display: flex;
+  justify-content: center;
+  font-family: 'limelight-regular', 'serif';
 }
 
 </style>

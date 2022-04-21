@@ -125,7 +125,6 @@ animation: fadeOutAnimation ease 15s;
   padding: 5px;
   display: flex;
   flex-direction: column;
- /* background: url('../assets/Gramophone_Vinyl_LP_Record.png') */
 
 }
 
