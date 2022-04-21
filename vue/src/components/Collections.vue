@@ -9,7 +9,7 @@
             name="isPublic"
             v-model="isPublic"     
           />
-          <label for="isPublic" > Make Collection Public? </label>
+        <label for="isPublic" > Make Collection Public? </label>
         <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
       
       </div>

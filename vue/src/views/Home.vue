@@ -5,7 +5,7 @@
       <Burger></Burger>
       <Sidebar>
         <div class="stats">
-            <h3>Library Stats: </h3>
+            <h3 class="libraryTitle">Library Stats: </h3>
             <h3>{{libraryCount}} Total Records</h3>
 
 
@@ -44,18 +44,11 @@
       </h1>
     </nav>
 
-    <!--<div class="addACollection">
-
-      <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
-      <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName)" >Create A New Collection</button>
-
-    </div>-->
-
 
     <div class="library">
-      <div
+      <div 
         class="record"
-        v-for="libraryRecord in $store.state.library"
+        v-for="libraryRecord in displayLibrary"
         v-bind:key="libraryRecord.id"
       >
         <div class="background">
@@ -94,7 +87,6 @@ export default {
   },
   data() {
     return {
-
       genreStats: {},
       artistStats: {},
       libraryCount: 0
@@ -107,8 +99,7 @@ export default {
           this.library = response.data;
           this.$store.commit('SET_LIBRARY', response.data);
         }
-      );
-
+    );
     const self = this;
     collectionService.getCollections()
     .then( response => {
@@ -142,7 +133,9 @@ export default {
         "warning")
       .then(() => {
         recordService.deleteFromLibrary(record.recordId);
-        location.reload();
+        //location.reload();
+        this.$store.commit('DELETE_FROM_STORE', record.recordId);
+        this.$router.push({name: 'home'});
       })
     },
 
@@ -159,28 +152,38 @@ export default {
     goToTracks(id) {
       this.$router.push({name: 'library-record-details', params: {id: id}});
     },
+  },
+  computed: {
+    displayLibrary() {
+      let displayLibrary = this.$store.state.library;
+      return displayLibrary;
+    }
   }
 };
 </script>
 <style scoped>
+
 .home {
   font-family: "vinyl-regular", "limelight-regular", "carosello-regular",
     "frontage-condensed-outline", serif;
   overflow-x:hidden;
 }
+
 .addACollection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .library {
   display: flex;
   flex-wrap: wrap;  
 }
+
 h1 {
   padding: 10px;
-  color: white;
+  color: honeydew;
   background-color: rgba(0,0,0,.8);
   font-family: "limelight-regular", serif;
   border-radius: 5px;
@@ -204,8 +207,16 @@ h1 {
 }
 
 .stats table td {
-  padding-right: 10px;
-  border: white 1px solid;
+  padding: 8px;
+  border: honeydew 1px solid;
+}
+
+.stats table th {
+  color: #CC5500;
+}
+
+.libraryTitle {
+  color: #CC5500;
 }
 
 .number-count {
@@ -216,7 +227,7 @@ h1 {
   position: relative;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: honeydew;
   margin: 1vw;
   padding: 20px;
   width: 500px;
@@ -233,6 +244,7 @@ h1 {
 .album-art {
   z-index: 1;
 }
+
 .background {
   position:absolute;
   display: flex;
@@ -245,7 +257,6 @@ h1 {
 }
 
 .background img{
- 
  position:absolute;
  background-position: center;
  height: 100%;
@@ -261,7 +272,6 @@ h1 {
 .deleteBtn {
   margin: 10px;
   cursor: pointer;
-
 }
 
 #addToCollection {
@@ -283,10 +293,7 @@ h1 {
 .coverImage {
   width: 250px;
   height: auto;
-  
 }
-
-
 
 @keyframes rotation {
   from {

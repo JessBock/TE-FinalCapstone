@@ -39,10 +39,12 @@ export default new Vuex.Store({
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
+
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
     },
+
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -50,23 +52,24 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
+
     SAVE_TO_LIBRARY(state, newRecord) {
       state.library.push(newRecord);
-      
     },
+
     DELETE_FROM_STORE(state, recordId) {
-      let index = state.library.findIndex(album => {album.id === recordId})
+      let index = state.library.findIndex(album => album.recordId === recordId)
       state.library.splice(index, 1);
-      
     },
 
     SAVE_TO_COLLECTION(state, collection) {
-      //state.collection.collectionName = collection.collectionName;
       state.collection.push(collection);
     },
+
     SET_LIBRARY(state, payload) {
         state.library = payload;
     },
+
     UPDATE_RESULTS(state, listResults) {
       state.results = listResults;
     },
@@ -78,6 +81,7 @@ export default new Vuex.Store({
     UPDATE_RECORD(state, record) {
       state.record = record;
     },
+
     SET_COLLECTION(state, collection) {
       state.collection = collection;
     },
@@ -88,9 +92,6 @@ export default new Vuex.Store({
 
     TOGGLE_NAV(state) {
         state.isNavOpen = !state.isNavOpen
-    }
-}
-
-
-  
+    },
+  } 
 })
