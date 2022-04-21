@@ -29,9 +29,12 @@
         </div>
       </Sidebar>
     </div>
+    
+    <div class="titleContainer">
       <h1 id='title'>Our Public Collections!</h1>
-      <div class="allCollection">
+    </div>
 
+    <div class="allCollection">
       <div class="eachPublicCollection" v-for='collection in publicCollections' v-bind:key='collection.collectionId'>
         <img src="../assets/Gramophone_Vinyl_LP_Record.png" />
         <h2><router-link class="collectionLink" v-bind:to="{name: 'public-collection-details', params: {id: collection.collectionId}}">{{collection.collectionName}}</router-link></h2>
@@ -95,10 +98,17 @@ export default {
   overflow-x:hidden;
 }
 
+.titleContainer {
+  display: flex;
+  justify-content: center;
+}
+
 #title{
     text-align: center;
     color: honeydew;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 5px;
     
     
 }

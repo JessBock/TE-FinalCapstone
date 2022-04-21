@@ -58,6 +58,7 @@ export default {
 methods: {
   createCollection(collectionName, isPublic) {
     this.collectionName = '';
+    this.isPublic = false;
      /* this.$store.commit("SAVE_TO_COLLECTION", collectionName, isPublic); */
     collectionService.addCollection(collectionName, isPublic)
     .then(() => {

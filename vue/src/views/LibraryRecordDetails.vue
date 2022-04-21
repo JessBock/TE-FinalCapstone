@@ -11,7 +11,7 @@
         <div class="collection-form">
             <label for="collection">Collection:</label>
             <select id="collection"  v-model.number='collectionId' >
-                <option v-for="collection in $store.state.collection"  v-bind:value="collection.collectionId" v-bind:key="collection.collectionId">{{collection.collectionName}}</option>
+                <option v-for="collection in $store.state.collections"  v-bind:value="collection.collectionId" v-bind:key="collection.collectionId">{{collection.collectionName}}</option>
             </select>
             <button type=submit v-on:click.prevent="saveToCollection()">Add to Collection</button>
         </div>
@@ -27,7 +27,7 @@
             <form class="comment-form" v-on:submit.prevent="setCommentsAndCondition">
                 <div>
                 <label for="condition">Record Condition:</label>
-                <select id="condition" v-model="details.condition">
+                <select id="condition" v-model="details.condition" :disabled="isSaved">
                     <option value="Mint">Mint</option>
                     <option value="Near Mint">Near Mint</option>
                     <option value="Good">Good</option>
@@ -37,9 +37,9 @@
                 </div>
                 <div>
                 <label for="comments">Comments:</label>
-                <textarea type="text" id="comments" v-model="details.comments"></textarea>
+                <textarea type="text" id="comments" v-model="details.comments" :disabled="isSaved"></textarea>
                 </div>
-                <button>Save Changes</button>
+                <button v-on:click="toggleIsSaved" >{{isSaved? 'Update' : 'Save Changes'}}</button>
             </form>
     </div>
   </div>
@@ -54,6 +54,7 @@ export default {
         return {
             details: {},
             collectionId: '',
+            isSaved: true
         }
     },
     created() {
@@ -64,6 +65,9 @@ export default {
         )
     },
     methods: {
+        toggleIsSaved() {
+            this.isSaved = !this.isSaved;
+        },
         saveToCollection() {
             collectionService.addRecordToCollection(this.details.recordId, this.collectionId);
             this.$confirm("You want to add '" +
