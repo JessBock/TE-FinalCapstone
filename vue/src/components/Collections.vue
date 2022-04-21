@@ -3,13 +3,15 @@
     <div class="addACollection">
 
         <input type="text" v-model="collectionName" placeholder="Enter A Collection Name" />
+        <div class='makeInline' >
         <input 
             type="checkbox" 
             id="isPublic" 
             name="isPublic"
             v-model="isPublic"     
           />
-        <label for="isPublic" > Make Collection Public? </label>
+        <label id='publicCheck' for="isPublic" > Make Collection Public? </label>
+        </div>
         <button id="addToCollection" type="submit" v-on:click.prevent="createCollection(collectionName, isPublic)" >Create A New Collection</button>
       
       </div>
@@ -142,14 +144,28 @@ animation: fadeOutAnimation ease 15s;
 .addACollection{
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: rgba(0,0,0,.8);
   color: honeydew;
   max-width: 25vw;
   margin: auto;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .collectionPage {
   overflow-x: hidden;
+}
+
+input  {
+  margin: 5px;
+}
+
+#publicCheck {
+  font-size: 15px;
+}
+
+.makeInline {
+  display: block;
 }
 
 @keyframes fadeOutAnimation {
@@ -160,4 +176,5 @@ animation: fadeOutAnimation ease 15s;
         opacity: 1;
      }
 }
+
 </style>
